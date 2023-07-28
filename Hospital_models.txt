@@ -1,0 +1,39 @@
+Model
+
+- Country
+-- Name
+-- City (ref)
+
+- City
+-- Name
+
+- Hospital
+-- Name
+-- City (ref)
+-- Address
+-- Phone
+-- Photo / string/path_file
+
+- Hospital_Doctor
+-- Hospital (ref)
+-- Doctor (ref)
+-- Price / double
+
+- Specialisation
+-- Name
+
+- Specialisation_Doctor
+-- Specialisation (ref)
+-- Doctor (ref)
+-- Experience / date /start date
+
+- Doctor
+-- FirstName
+-- LastName
+-- Specialisation (ref) (table?)
+-- Hospital (ref) (table?)
+-- Phone 
+-- Photo string/path_file
+-- Description  
+-- FullDescription
+-- Birthday date
