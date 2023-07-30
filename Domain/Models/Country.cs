@@ -1,6 +1,7 @@
-﻿using System.Numerics;
+﻿using Domain;
 
-public class Country { 
+public class Country : BaseEntity
+{ 
     public string Name { get; set; }
     public List<City> City { get; set; }
 }

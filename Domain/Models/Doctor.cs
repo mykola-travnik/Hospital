@@ -1,4 +1,6 @@
-﻿public class Doctor
+﻿using Domain;
+
+public class Doctor : BaseEntity
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

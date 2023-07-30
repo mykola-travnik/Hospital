@@ -1,4 +1,6 @@
-﻿public class Hospital_Doctor
+﻿using Domain;
+
+public class Hospital_Doctor : BaseEntity
 {
     public List<Hospital> Hospital { get; set; }
     public List<Doctor> Doctor { get; set; }
