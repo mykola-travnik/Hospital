@@ -6,22 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class NewEntities : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "DoctorId",
-                table: "Hospital",
-                type: "uuid",
-                nullable: true);
-
-            migrationBuilder.AddColumn<Guid>(
-                name: "Hospital_DoctorId",
-                table: "Hospital",
-                type: "uuid",
-                nullable: true);
+            migrationBuilder.CreateTable(
+                name: "City",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    CreationTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DeletedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Hospital_Doctor",
@@ -30,9 +34,9 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Price = table.Column<double>(type: "double precision", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
-                    CreationTimestamp = table.Column<string>(type: "text", nullable: false),
-                    ModifiedTimestamp = table.Column<string>(type: "text", nullable: false),
-                    DeletedTimestamp = table.Column<string>(type: "text", nullable: false)
+                    CreationTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DeletedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,9 +50,9 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Experience = table.Column<DateOnly>(type: "date", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
-                    CreationTimestamp = table.Column<string>(type: "text", nullable: false),
-                    ModifiedTimestamp = table.Column<string>(type: "text", nullable: false),
-                    DeletedTimestamp = table.Column<string>(type: "text", nullable: false)
+                    CreationTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DeletedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,9 +74,9 @@ namespace Infrastructure.Migrations
                     Hospital_DoctorId = table.Column<Guid>(type: "uuid", nullable: true),
                     Specialisation_DoctorId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
-                    CreationTimestamp = table.Column<string>(type: "text", nullable: false),
-                    ModifiedTimestamp = table.Column<string>(type: "text", nullable: false),
-                    DeletedTimestamp = table.Column<string>(type: "text", nullable: false)
+                    CreationTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DeletedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -90,6 +94,44 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Hospital",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false),
+                    Phone = table.Column<string>(type: "text", nullable: false),
+                    Photo = table.Column<string>(type: "text", nullable: false),
+                    CityId = table.Column<Guid>(type: "uuid", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    Hospital_DoctorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    CreationTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DeletedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hospital", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Hospital_City_CityId",
+                        column: x => x.CityId,
+                        principalTable: "City",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Hospital_Doctor_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctor",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Hospital_Hospital_Doctor_Hospital_DoctorId",
+                        column: x => x.Hospital_DoctorId,
+                        principalTable: "Hospital_Doctor",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Specialisation",
                 columns: table => new
                 {
@@ -98,9 +140,9 @@ namespace Infrastructure.Migrations
                     DoctorId = table.Column<Guid>(type: "uuid", nullable: true),
                     Specialisation_DoctorId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
-                    CreationTimestamp = table.Column<string>(type: "text", nullable: false),
-                    ModifiedTimestamp = table.Column<string>(type: "text", nullable: false),
-                    DeletedTimestamp = table.Column<string>(type: "text", nullable: false)
+                    CreationTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModifiedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DeletedTimestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -118,16 +160,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Hospital_DoctorId",
-                table: "Hospital",
-                column: "DoctorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Hospital_Hospital_DoctorId",
-                table: "Hospital",
-                column: "Hospital_DoctorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Doctor_Hospital_DoctorId",
                 table: "Doctor",
                 column: "Hospital_DoctorId");
@@ -138,6 +170,21 @@ namespace Infrastructure.Migrations
                 column: "Specialisation_DoctorId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Hospital_CityId",
+                table: "Hospital",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hospital_DoctorId",
+                table: "Hospital",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hospital_Hospital_DoctorId",
+                table: "Hospital",
+                column: "Hospital_DoctorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Specialisation_DoctorId",
                 table: "Specialisation",
                 column: "DoctorId");
@@ -146,35 +193,19 @@ namespace Infrastructure.Migrations
                 name: "IX_Specialisation_Specialisation_DoctorId",
                 table: "Specialisation",
                 column: "Specialisation_DoctorId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Hospital_Doctor_DoctorId",
-                table: "Hospital",
-                column: "DoctorId",
-                principalTable: "Doctor",
-                principalColumn: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Hospital_Hospital_Doctor_Hospital_DoctorId",
-                table: "Hospital",
-                column: "Hospital_DoctorId",
-                principalTable: "Hospital_Doctor",
-                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Hospital_Doctor_DoctorId",
-                table: "Hospital");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Hospital_Hospital_Doctor_Hospital_DoctorId",
-                table: "Hospital");
+            migrationBuilder.DropTable(
+                name: "Hospital");
 
             migrationBuilder.DropTable(
                 name: "Specialisation");
+
+            migrationBuilder.DropTable(
+                name: "City");
 
             migrationBuilder.DropTable(
                 name: "Doctor");
@@ -184,22 +215,6 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Specialisation_Doctor");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Hospital_DoctorId",
-                table: "Hospital");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Hospital_Hospital_DoctorId",
-                table: "Hospital");
-
-            migrationBuilder.DropColumn(
-                name: "DoctorId",
-                table: "Hospital");
-
-            migrationBuilder.DropColumn(
-                name: "Hospital_DoctorId",
-                table: "Hospital");
         }
     }
 }

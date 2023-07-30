@@ -6,10 +6,10 @@
 
         public bool IsDeleted { get; set; }
 
-        public string CreationTimestamp { get; set; }
+        public DateTime CreationTimestamp { get; set; }
 
-        public string ModifiedTimestamp { get; set; }
+        public DateTime ModifiedTimestamp { get; set; }
 
-        public string DeletedTimestamp { get; set; }
+        public DateTime? DeletedTimestamp { get; set; }
     }
 }

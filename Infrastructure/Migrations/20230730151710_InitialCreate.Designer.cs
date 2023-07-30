@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20230730125709_NewEntities")]
-    partial class NewEntities
+    [Migration("20230730151710_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,20 +31,17 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CreationTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeletedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ModifiedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -64,13 +61,11 @@ namespace Infrastructure.Migrations
                     b.Property<DateOnly>("Birthday")
                         .HasColumnType("date");
 
-                    b.Property<string>("CreationTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeletedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -94,9 +89,8 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("ModifiedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Phone")
                         .IsRequired()
@@ -131,13 +125,11 @@ namespace Infrastructure.Migrations
                     b.Property<Guid>("CityId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CreationTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeletedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("DoctorId")
                         .HasColumnType("uuid");
@@ -148,9 +140,8 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ModifiedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -181,20 +172,17 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CreationTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeletedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ModifiedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<double>("Price")
                         .HasColumnType("double precision");
@@ -210,13 +198,11 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CreationTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeletedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("DoctorId")
                         .HasColumnType("uuid");
@@ -224,9 +210,8 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ModifiedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -250,13 +235,11 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("CreationTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("DeletedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateOnly>("Experience")
                         .HasColumnType("date");
@@ -264,9 +247,8 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("ModifiedTimestamp")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
