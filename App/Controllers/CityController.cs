@@ -21,5 +21,23 @@ namespace App.Controllers
         {
             return cityRepository.Get(id);
         }
+
+        [HttpPost]
+        public async Task<City> Create(City city)
+        {
+            return await cityRepository.CreateAsync(city);
+        }
+
+        [HttpPut]
+        public async Task<City> Update(City city)
+        {
+            return await cityRepository.UpdateAsync(city);
+        }
+
+        [HttpDelete]
+        public Task<bool> Delete(Guid id)
+        {
+            return cityRepository.DeleteAsync(id);
+        }
     }
 }
