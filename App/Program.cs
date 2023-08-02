@@ -10,7 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainContext>();
+
+// Add repository
 builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+builder.Services.AddScoped<ISpecialisationRepository, SpecialisationRepository>();
+
 
 var app = builder.Build();
 

@@ -10,6 +10,7 @@ namespace App.Controllers
         private readonly ILogger<CityController> _logger;
         private readonly ICityRepository cityRepository;
 
+        // Read Controller
         public CityController(ILogger<CityController> logger, ICityRepository cityRepository)
         {
             _logger = logger;

@@ -8,7 +8,7 @@ namespace Infrastructure.Contexts
 
         public DbSet<City> City { get; set; }
 
-        public DbSet<Doctor> Doctor { get; set; }
+        public DbSet<Doctor> Doctor { get; set; } 
 
         public DbSet<Hospital_Doctor> Hospital_Doctor { get; set; }
 
