@@ -1,3 +1,4 @@
+using Business;
 using Data;
 using Data.Repositories;
 using Infrastructure.Contexts;
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
 builder.Services.AddScoped<ISpecialisationRepository, SpecialisationRepository>();
 
+builder.Services.AddTransient<ICountryDataSeedService, CountryDataSeedService>();
 
 var app = builder.Build();
 
