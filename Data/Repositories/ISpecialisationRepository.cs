@@ -1,4 +1,4 @@
 ﻿namespace Data.Repositories
 {
-    public interface ISpecialisationRepository : IRepository<Specialisation> { }
+    public interface ISpecialisationRepository : IRepository<Specialisation, SpecialisationDto> { }
 }

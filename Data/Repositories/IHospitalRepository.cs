@@ -1,4 +1,4 @@
 ﻿namespace Data.Repositories
 {
-    public interface IHospitalRepository : IRepository<Hospital> { }
+    public interface IHospitalRepository : IRepository<Hospital, HospitalDto> { }
 }

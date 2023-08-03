@@ -2,7 +2,7 @@
 
 namespace Data.Repositories
 {
-    public class DoctorRepository : AbstractRepository<Doctor>, IDoctorRepository
+    public class DoctorRepository : AbstractRepository<Doctor, DoctorDto>, IDoctorRepository
     {
         public DoctorRepository(MainContext context) : base(context)
         {

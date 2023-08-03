@@ -4,17 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App
 {
-    public class AbstractController<TEntity> : ControllerBase where TEntity : BaseEntity
-    {
-        private readonly IRepository<TEntity> repository;
+    public class AbstractController<TEntity, TDto> : ControllerBase where TEntity : BaseEntity where TDto : BaseDto, new()
+     {
+        private readonly IRepository<TEntity, TDto> repository;
 
-        public AbstractController(IRepository<TEntity> repository)
+        public AbstractController(IRepository<TEntity, TDto> repository)
         {
             this.repository = repository;
         }
 
         [HttpGet]
-        public TEntity Get(Guid id)
+        public TDto Get(Guid id)
         {
             return repository.Get(id);
         }

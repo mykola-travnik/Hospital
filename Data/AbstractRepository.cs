@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public abstract class AbstractRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public abstract class AbstractRepository<TEntity, TDto> : IRepository<TEntity, TDto> where TEntity : BaseEntity where TDto : BaseDto, new()
     {
         private readonly DbContext _context;
 
@@ -12,14 +12,24 @@ namespace Data
             _context = context;
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IQueryable<TEntity> GetQueryable()
         {
-            return _context.Set<TEntity>();
+            return _context.Set<TEntity>().AsQueryable();
         }
 
-        public TEntity Get(Guid id)
+        public TDto Get(Guid id)
         {
-            return _context.Set<TEntity>().FirstOrDefault(_ => _.Id == id);
+            var entity = _context.Set<TEntity>().FirstOrDefault(_ => _.Id == id);
+
+            TDto dto = new TDto();
+
+            dto.Id = entity.Id;
+            dto.IsDeleted = entity.IsDeleted;
+            dto.CreationTimestamp = entity.CreationTimestamp;
+            dto.ModifiedTimestamp = entity.ModifiedTimestamp;
+            dto.DeletedTimestamp = entity.DeletedTimestamp;
+
+            return dto;
         }
 
         public Task<IEnumerable<TEntity>> FindAsync(Func<TEntity, bool> predicate)
@@ -45,7 +55,7 @@ namespace Data
 
         public async Task<bool> DeleteAsync(Guid id)
         {
-            var entity = Get(id);
+            var entity = GetQueryable().FirstOrDefault(entity => entity.Id == id);
 
             if (entity is null)
                 return false;

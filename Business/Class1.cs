@@ -10,11 +10,5 @@ namespace Business
         {
             CityRepository = cityRepository;
         }
-
-
-        public City GetCity()
-        {
-            return CityRepository.Get(new Guid());
-        }
     }
 }

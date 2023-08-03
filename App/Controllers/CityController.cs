@@ -5,7 +5,7 @@ namespace App.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CityController : AbstractController<City>
+    public class CityController : AbstractController<City, CityDto>
     {
         public CityController(ICityRepository cityRepository): base(cityRepository)
         {

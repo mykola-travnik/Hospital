@@ -5,7 +5,7 @@ namespace App.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DoctorController : AbstractController<Doctor>
+    public class DoctorController : AbstractController<Doctor, DoctorDto>
     {
         public DoctorController(IDoctorRepository doctorRepository) : base(doctorRepository)
         {
