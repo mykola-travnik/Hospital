@@ -11,6 +11,13 @@ namespace Data
             CreateMap<Doctor, DoctorDto>().ReverseMap();
             CreateMap<Hospital, HospitalDto>().ReverseMap();
             CreateMap<Specialisation, SpecialisationDto>().ReverseMap();
+
+            CreateMap<City, CityCreateDto>().ReverseMap();
+            CreateMap<Country, CountryCreateDto>().ReverseMap();
+            CreateMap<Doctor, DoctorCreateDto>().ReverseMap();
+            CreateMap<Hospital, HospitalCreateDto>().ReverseMap();
+            CreateMap<Specialisation, SpecialisationCreateDto>().ReverseMap();
+
         }
     }
 }

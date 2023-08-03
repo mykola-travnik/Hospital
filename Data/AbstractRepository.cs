@@ -4,7 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public abstract class AbstractRepository<TEntity, TDto> : IRepository<TEntity, TDto> where TEntity : BaseEntity where TDto : BaseDto, new()
+    public abstract class AbstractRepository<TEntity, TDto, TCreateDto> : IRepository<TEntity, TDto, TCreateDto> 
+        where TEntity : BaseEntity
+        where TDto : BaseDto, new()
+        where TCreateDto : BaseCreateDto, new()
+
     {
         private readonly DbContext _context;
         private readonly IMapper mapper;
@@ -28,12 +32,6 @@ namespace Data
 
             var dto = mapper.Map<TEntity, TDto>(entity);
 
-            //dto.Id = entity.Id;
-            //dto.IsDeleted = entity.IsDeleted;
-            //dto.CreationTimestamp = entity.CreationTimestamp;
-            //dto.ModifiedTimestamp = entity.ModifiedTimestamp;
-            //dto.DeletedTimestamp = entity.DeletedTimestamp;
-
             return dto;
         }
 
@@ -42,12 +40,22 @@ namespace Data
             return new(() => _context.Set<TEntity>().Where(predicate));
         }
 
-        public async Task<TEntity> CreateAsync(TEntity entity)
+        public async Task<TDto> CreateAsync(TCreateDto entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
+            var newEntity = mapper.Map<TCreateDto, TEntity>(entity);
+            var dataTime = DateTime.Now.ToUniversalTime();
+
+            newEntity.CreationTimestamp = dataTime;
+            newEntity.ModifiedTimestamp = dataTime;
+            newEntity.IsDeleted = false;
+            newEntity.Id = Guid.NewGuid();
+
+            await _context.Set<TEntity>().AddAsync(newEntity);
             await _context.SaveChangesAsync();
 
-            return entity;
+            var dto = mapper.Map<TEntity, TDto> (newEntity);
+
+            return dto;
         }
 
         public async Task<TEntity> UpdateAsync(TEntity entity)

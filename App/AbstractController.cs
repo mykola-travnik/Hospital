@@ -4,11 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App
 {
-    public class AbstractController<TEntity, TDto> : ControllerBase where TEntity : BaseEntity where TDto : BaseDto, new()
-     {
-        private readonly IRepository<TEntity, TDto> repository;
+    public class AbstractController<TEntity, TDto, TCreateDto> : ControllerBase 
+        where TEntity : BaseEntity
+        where TDto : BaseDto, new()
+        where TCreateDto : BaseCreateDto, new()
+    {
+        private readonly IRepository<TEntity, TDto, TCreateDto> repository;
 
-        public AbstractController(IRepository<TEntity, TDto> repository)
+        public AbstractController(IRepository<TEntity, TDto, TCreateDto> repository)
         {
             this.repository = repository;
         }
@@ -20,7 +23,7 @@ namespace App
         }
 
         [HttpPost]
-        public async Task<TEntity> Create(TEntity entity)
+        public async Task<TDto> Create(TCreateDto entity)
         {
             return await repository.CreateAsync(entity);
         }

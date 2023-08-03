@@ -1,4 +1,4 @@
 ﻿namespace Data.Repositories
 {
-    public interface ICountryRepository: IRepository<Country, CountryDto> { }
+    public interface ICountryRepository: IRepository<Country, CountryDto, CountryCreateDto> { }
 }
