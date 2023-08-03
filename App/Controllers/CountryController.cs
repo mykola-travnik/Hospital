@@ -5,9 +5,9 @@ namespace App.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CityController : AbstractController<City>
+    public class CountryController : AbstractController<Country>
     {
-        public CityController(ICityRepository cityRepository): base(cityRepository)
+        public CountryController(ICountryRepository countryRepository) : base(countryRepository)
         {
         }
     }
