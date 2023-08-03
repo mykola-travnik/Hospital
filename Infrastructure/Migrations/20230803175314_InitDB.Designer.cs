@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MainContext))]
-    [Migration("20230730151710_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230803175314_InitDB")]
+    partial class InitDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,6 +26,38 @@ namespace Infrastructure.Migrations
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreationTimestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedTimestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("ModifiedTimestamp")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("Country", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +81,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("City");
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("Doctor", b =>
@@ -68,7 +100,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
@@ -76,11 +107,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("FullDescription")
-                        .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<Guid?>("Hospital_DoctorId")
-                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -93,21 +120,12 @@ namespace Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("Specialisation_DoctorId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("Hospital_DoctorId");
-
-                    b.HasIndex("Specialisation_DoctorId");
 
                     b.ToTable("Doctor");
                 });
@@ -119,7 +137,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("CityId")
@@ -130,12 +147,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<DateTime?>("DeletedTimestamp")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("DoctorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("Hospital_DoctorId")
-                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -148,20 +159,14 @@ namespace Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Photo")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("Hospital_DoctorId");
 
                     b.ToTable("Hospital");
                 });
@@ -178,16 +183,31 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedTimestamp")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("HospitalId")
+                        .HasColumnType("uuid");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
                     b.Property<DateTime>("ModifiedTimestamp")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<double>("Price")
+                    b.Property<double?>("Price")
                         .HasColumnType("double precision");
 
+                    b.Property<Guid>("SpecialisationId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("HospitalId");
+
+                    b.HasIndex("SpecialisationId");
 
                     b.ToTable("Hospital_Doctor");
                 });
@@ -204,9 +224,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedTimestamp")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("DoctorId")
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -217,14 +234,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("Specialisation_DoctorId")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("Specialisation_DoctorId");
 
                     b.ToTable("Specialisation");
                 });
@@ -241,7 +251,10 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedTimestamp")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("Experience")
+                    b.Property<Guid>("DoctorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateOnly?>("Experience")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDeleted")
@@ -250,73 +263,81 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("ModifiedTimestamp")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("SpecialisationId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("SpecialisationId");
 
                     b.ToTable("Specialisation_Doctor");
                 });
 
-            modelBuilder.Entity("Doctor", b =>
+            modelBuilder.Entity("City", b =>
                 {
-                    b.HasOne("Hospital_Doctor", null)
-                        .WithMany("Doctor")
-                        .HasForeignKey("Hospital_DoctorId");
+                    b.HasOne("Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Specialisation_Doctor", null)
-                        .WithMany("Doctor")
-                        .HasForeignKey("Specialisation_DoctorId");
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("Hospital", b =>
                 {
                     b.HasOne("City", "City")
-                        .WithMany("Hospitals")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Doctor", null)
-                        .WithMany("Hospital")
-                        .HasForeignKey("DoctorId");
-
-                    b.HasOne("Hospital_Doctor", null)
-                        .WithMany("Hospital")
-                        .HasForeignKey("Hospital_DoctorId");
-
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("Specialisation", b =>
+            modelBuilder.Entity("Hospital_Doctor", b =>
                 {
-                    b.HasOne("Doctor", null)
-                        .WithMany("Specialisation")
-                        .HasForeignKey("DoctorId");
+                    b.HasOne("Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Specialisation_Doctor", null)
-                        .WithMany("Specialisation")
-                        .HasForeignKey("Specialisation_DoctorId");
-                });
+                    b.HasOne("Hospital", "Hospital")
+                        .WithMany()
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("City", b =>
-                {
-                    b.Navigation("Hospitals");
-                });
+                    b.HasOne("Specialisation", "Specialisation")
+                        .WithMany()
+                        .HasForeignKey("SpecialisationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("Doctor", b =>
-                {
+                    b.Navigation("Doctor");
+
                     b.Navigation("Hospital");
 
                     b.Navigation("Specialisation");
                 });
 
-            modelBuilder.Entity("Hospital_Doctor", b =>
-                {
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Hospital");
-                });
-
             modelBuilder.Entity("Specialisation_Doctor", b =>
                 {
+                    b.HasOne("Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Specialisation", "Specialisation")
+                        .WithMany()
+                        .HasForeignKey("SpecialisationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Doctor");
 
                     b.Navigation("Specialisation");

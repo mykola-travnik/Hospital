@@ -4,6 +4,8 @@ namespace Infrastructure.Contexts
 {
     public class MainContext : DbContext
     {
+        public DbSet<Country> Countries { get; set; }
+
         public DbSet<Hospital> Hospital { get; set; }
 
         public DbSet<City> City { get; set; }
