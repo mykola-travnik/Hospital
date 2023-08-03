@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using AutoMapper;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data
@@ -6,10 +7,12 @@ namespace Data
     public abstract class AbstractRepository<TEntity, TDto> : IRepository<TEntity, TDto> where TEntity : BaseEntity where TDto : BaseDto, new()
     {
         private readonly DbContext _context;
+        private readonly IMapper mapper;
 
-        protected AbstractRepository(DbContext context)
+        protected AbstractRepository(DbContext context, IMapper mapper)
         {
             _context = context;
+            this.mapper = mapper;
         }
 
         public IQueryable<TEntity> GetQueryable()
@@ -21,13 +24,15 @@ namespace Data
         {
             var entity = _context.Set<TEntity>().FirstOrDefault(_ => _.Id == id);
 
-            TDto dto = new TDto();
+            if (entity == null) { throw new Exception("Not Found"); }
 
-            dto.Id = entity.Id;
-            dto.IsDeleted = entity.IsDeleted;
-            dto.CreationTimestamp = entity.CreationTimestamp;
-            dto.ModifiedTimestamp = entity.ModifiedTimestamp;
-            dto.DeletedTimestamp = entity.DeletedTimestamp;
+            var dto = mapper.Map<TEntity, TDto>(entity);
+
+            //dto.Id = entity.Id;
+            //dto.IsDeleted = entity.IsDeleted;
+            //dto.CreationTimestamp = entity.CreationTimestamp;
+            //dto.ModifiedTimestamp = entity.ModifiedTimestamp;
+            //dto.DeletedTimestamp = entity.DeletedTimestamp;
 
             return dto;
         }

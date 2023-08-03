@@ -1,3 +1,4 @@
+using Data;
 using Data.Repositories;
 using Infrastructure.Contexts;
 
@@ -10,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainContext>();
-
+builder.Services.AddAutoMapper(typeof(MapperConfig));
 // Add repository
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
