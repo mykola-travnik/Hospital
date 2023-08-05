@@ -4,10 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public abstract class AbstractRepository<TEntity, TDto, TCreateDto> : IRepository<TEntity, TDto, TCreateDto> 
+    public abstract class AbstractRepository<TEntity, TDto, TCreateDto, TUpdateDto> : IRepository<TEntity, TDto, TCreateDto, TUpdateDto> 
         where TEntity : BaseEntity
         where TDto : BaseDto, new()
         where TCreateDto : BaseCreateDto, new()
+        where TUpdateDto : BaseUpdateDto, new()
 
     {
         private readonly DbContext _context;
@@ -26,7 +27,7 @@ namespace Data
 
         public TDto Get(Guid id)
         {
-            var entity = _context.Set<TEntity>().FirstOrDefault(_ => _.Id == id);
+            var entity = GetQueryable().FirstOrDefault(entity => entity.Id == id);
 
             if (entity == null) { throw new Exception("Not Found"); }
 
@@ -58,20 +59,30 @@ namespace Data
             return dto;
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<TDto> UpdateAsync(TUpdateDto entity)
         {
-            _context.Set<TEntity>().Update(entity);
+            var updateEntity = GetQueryable().FirstOrDefault(updateEntity => updateEntity.Id == entity.Id);
+
+            if (entity == null) { throw new Exception("Not Found"); }
+
+            var dataTime = DateTime.Now.ToUniversalTime();
+
+            updateEntity.ModifiedTimestamp = dataTime;
+            updateEntity = mapper.Map<TUpdateDto, TEntity>(entity);////////////
+
+            _context.Set<TEntity>().Update(updateEntity);
             await _context.SaveChangesAsync();
 
-            return entity;
+            var dto = mapper.Map<TEntity, TDto> (updateEntity);
+
+            return dto;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
         {
             var entity = GetQueryable().FirstOrDefault(entity => entity.Id == id);
-
-            if (entity is null)
-                return false;
+           
+            if (entity == null) { throw new Exception("Not Found"); }
 
             _context.Set<TEntity>().Remove(entity);
             await _context.SaveChangesAsync();

@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App
 {
-    public class AbstractController<TEntity, TDto, TCreateDto> : ControllerBase 
+    public class AbstractController<TEntity, TDto, TCreateDto, TUpdateDto> : ControllerBase 
         where TEntity : BaseEntity
         where TDto : BaseDto, new()
         where TCreateDto : BaseCreateDto, new()
+        where TUpdateDto : BaseUpdateDto, new()
     {
-        private readonly IRepository<TEntity, TDto, TCreateDto> repository;
+        private readonly IRepository<TEntity, TDto, TCreateDto, TUpdateDto> repository;
 
-        public AbstractController(IRepository<TEntity, TDto, TCreateDto> repository)
+        public AbstractController(IRepository<TEntity, TDto, TCreateDto, TUpdateDto> repository)
         {
             this.repository = repository;
         }
@@ -29,7 +30,7 @@ namespace App
         }
 
         [HttpPut]
-        public async Task<TEntity> Update(TEntity entity)
+        public async Task<TDto> Update(TUpdateDto entity)
         {
             return await repository.UpdateAsync(entity);
         }
