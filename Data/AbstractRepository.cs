@@ -59,23 +59,22 @@ namespace Data
             return dto;
         }
 
-        public async Task<TDto> UpdateAsync(TUpdateDto entity)
+        public async Task<TDto> UpdateAsync(TUpdateDto dto)
         {
-            var updateEntity = GetQueryable().FirstOrDefault(updateEntity => updateEntity.Id == entity.Id);
+            if (dto == null) { throw new Exception("Not Found"); }
 
-            if (entity == null) { throw new Exception("Not Found"); }
+            var updateEntity = GetQueryable().AsNoTracking().FirstOrDefault(updateEntity => updateEntity.Id == dto.Id);
 
-            var dataTime = DateTime.Now.ToUniversalTime();
+            if (updateEntity == null) { throw new Exception("Not Found"); }
 
-            updateEntity.ModifiedTimestamp = dataTime;
-            updateEntity = mapper.Map<TUpdateDto, TEntity>(entity);////////////
+            updateEntity = mapper.Map(dto, updateEntity);
+
+            updateEntity.ModifiedTimestamp = DateTime.Now.ToUniversalTime();
 
             _context.Set<TEntity>().Update(updateEntity);
             await _context.SaveChangesAsync();
 
-            var dto = mapper.Map<TEntity, TDto> (updateEntity);
-
-            return dto;
+            return mapper.Map<TEntity, TDto>(updateEntity);
         }
 
         public async Task<bool> DeleteAsync(Guid id)
