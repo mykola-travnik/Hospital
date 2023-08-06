@@ -1,1 +1,32 @@
-<p>countries-admin-page works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="h1">Новая страна</div>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field>
+          <mat-label>Название</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Название"
+            formControlName="title"
+            appFocus
+          />
+        </mat-form-field>
+
+        <p *ngIf="title.errors && title.errors['minlength'] && title.touched">
+          Please fill title field width min length. Now {{ title.value.length }}
+        </p>
+
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          onclick="createCountry()"
+        >
+          Primary
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
