@@ -14,6 +14,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainContext>();
 builder.Services.AddAutoMapper(typeof(MapperConfig));
+
+builder.Services.AddCors(options =>
+{
+
+    options.AddDefaultPolicy(
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 // Add repository
 builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
@@ -36,5 +49,5 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors();
 app.Run();
