@@ -17,25 +17,25 @@ namespace App
             this.repository = repository;
         }
 
-        [HttpGet]
+        [HttpGet(nameof(Get))]
         public TDto Get(Guid id)
         {
             return repository.Get(id);
         }
 
-        [HttpPost]
+        [HttpPost(nameof(Create))]
         public async Task<TDto> Create(TCreateDto entity)
         {
             return await repository.CreateAsync(entity);
         }
 
-        [HttpPut]
+        [HttpPut(nameof(Update))]
         public async Task<TDto> Update(TUpdateDto entity)
         {
             return await repository.UpdateAsync(entity);
         }
 
-        [HttpDelete]
+        [HttpDelete(nameof(Delete))]
         public Task<bool> Delete(Guid id)
         {
             return repository.DeleteAsync(id);

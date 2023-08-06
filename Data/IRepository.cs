@@ -14,5 +14,6 @@ namespace Data
         public Task<TDto> CreateAsync(TCreateDto item);
         public Task<TDto> UpdateAsync(TUpdateDto item);
         public Task<bool> DeleteAsync(Guid id);
+        public Task SeedData(List<TEntity> entities);
     }
 }

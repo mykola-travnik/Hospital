@@ -1,4 +1,4 @@
-﻿namespace Business
+﻿namespace Business.DataSeedService
 {
     public abstract class BaseDataSeedService
     {
