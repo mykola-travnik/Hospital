@@ -36,6 +36,8 @@ builder.Services.AddScoped<ISpecialisationRepository, SpecialisationRepository>(
 
 builder.Services.AddTransient<ICountryDataSeedService, CountryDataSeedService>();
 builder.Services.AddTransient<ICityDataSeedService, CityDataSeedService>();
+builder.Services.AddTransient<IHospitalDataSeedService, HospitalDataSeedService>();
+builder.Services.AddTransient<ISpecialisationDataSeedService, SpecialisationDataSeedService>();
 
 var app = builder.Build();
 

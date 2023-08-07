@@ -11,11 +11,20 @@ namespace App.Controllers
     {
         private readonly ICountryDataSeedService countryDataSeedService;
         private readonly ICityDataSeedService cityDataSeedService;
+        private readonly IHospitalDataSeedService hospitalDataSeedService;
+        private readonly ISpecialisationDataSeedService specialisationDataSeedService;
 
-        public DataSeedController(ICountryDataSeedService countryDataSeedService, ICityDataSeedService cityDataSeedService)
+        public DataSeedController(
+            ICountryDataSeedService countryDataSeedService, 
+            ICityDataSeedService cityDataSeedService,
+            IHospitalDataSeedService hospitalDataSeedService,
+            ISpecialisationDataSeedService specialisationDataSeedService)
         {
             this.countryDataSeedService = countryDataSeedService;
             this.cityDataSeedService = cityDataSeedService;
+            this.hospitalDataSeedService = hospitalDataSeedService;
+            this.specialisationDataSeedService = specialisationDataSeedService;
+
         }
 
 
@@ -24,6 +33,8 @@ namespace App.Controllers
         {
             await countryDataSeedService.DataSeedAsync();
             await cityDataSeedService.DataSeedAsync();
+            await hospitalDataSeedService.DataSeedAsync();
+            await specialisationDataSeedService.DataSeedAsync();
         }
     }
 }

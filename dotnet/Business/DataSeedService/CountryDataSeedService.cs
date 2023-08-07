@@ -5,7 +5,7 @@ using System.Data;
 
 namespace Business.DataSeedService
 {
-    public class CountryDataSeedService : BaseDataSeedService, IDataSeedService, ICountryDataSeedService
+    public class CountryDataSeedService : AbstractDataSeedService, IDataSeedService, ICountryDataSeedService
     {
         private readonly ICountryRepository repository;
 
