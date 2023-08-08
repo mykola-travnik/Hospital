@@ -1,18 +1,21 @@
 ﻿using Data;
+using Data.QueryDto;
+using Data.Repositories;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App
 {
-    public class AbstractController<TEntity, TDto, TCreateDto, TUpdateDto> : ControllerBase 
+    public class AbstractController<TEntity, TDto, TCreateDto, TUpdateDto, TQueryDto> : ControllerBase 
         where TEntity : BaseEntity
         where TDto : BaseDto, new()
         where TCreateDto : BaseCreateDto, new()
         where TUpdateDto : BaseUpdateDto, new()
+        where TQueryDto : BaseQueryDto, new()
     {
-        private readonly IRepository<TEntity, TDto, TCreateDto, TUpdateDto> repository;
+        private readonly IRepository<TEntity, TDto, TCreateDto, TUpdateDto, TQueryDto> repository;
 
-        public AbstractController(IRepository<TEntity, TDto, TCreateDto, TUpdateDto> repository)
+        public AbstractController(IRepository<TEntity, TDto, TCreateDto, TUpdateDto, TQueryDto> repository)
         {
             this.repository = repository;
         }
@@ -39,6 +42,13 @@ namespace App
         public Task<bool> Delete(Guid id)
         {
             return repository.DeleteAsync(id);
+        }
+
+        [HttpPost(nameof(Query))]
+        public List<TDto> Query(TQueryDto query)
+        {
+
+            return repository.QueryAsync(query);
         }
 
     }

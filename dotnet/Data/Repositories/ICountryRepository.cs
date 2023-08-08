@@ -1,4 +1,6 @@
-﻿namespace Data.Repositories
+﻿using Data.QueryDto;
+
+namespace Data.Repositories
 {
-    public interface ICountryRepository: IRepository<Country, CountryDto, CountryCreateDto, CountryUpdateDto> { }
+    public interface ICountryRepository: IRepository<Country, CountryDto, CountryCreateDto, CountryUpdateDto, CountryQueryDto> { }
 }

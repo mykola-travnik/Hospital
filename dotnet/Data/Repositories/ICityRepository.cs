@@ -1,4 +1,6 @@
-﻿namespace Data.Repositories
+﻿using Data.QueryDto;
+
+namespace Data.Repositories
 {
-    public interface ICityRepository: IRepository<City, CityDto, CityCreateDto, CityUpdateDto> { }
+    public interface ICityRepository: IRepository<City, CityDto, CityCreateDto, CityUpdateDto, CityQueryDto> { }
 }

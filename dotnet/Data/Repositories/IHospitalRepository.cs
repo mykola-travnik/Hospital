@@ -1,4 +1,6 @@
-﻿namespace Data.Repositories
+﻿using Data.QueryDto;
+
+namespace Data.Repositories
 {
-    public interface IHospitalRepository : IRepository<Hospital, HospitalDto, HospitalCreateDto, HospitalUpdateDto> { }
+    public interface IHospitalRepository : IRepository<Hospital, HospitalDto, HospitalCreateDto, HospitalUpdateDto, HospitalQueryDto> { }
 }

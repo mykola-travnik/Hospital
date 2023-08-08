@@ -4,15 +4,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public abstract class AbstractRepository<TEntity, TDto, TCreateDto, TUpdateDto> : IRepository<TEntity, TDto, TCreateDto, TUpdateDto> 
+    public abstract class AbstractRepository<TEntity, TDto, TCreateDto, TUpdateDto, TQueryDto> : IRepository<TEntity, TDto, TCreateDto, TUpdateDto, TQueryDto>
         where TEntity : BaseEntity
         where TDto : BaseDto, new()
         where TCreateDto : BaseCreateDto, new()
         where TUpdateDto : BaseUpdateDto, new()
+        where TQueryDto : BaseQueryDto, new()
 
     {
         private readonly DbContext _context;
         private readonly IMapper mapper;
+
+        //public abstract List<TDto> QueryAsync(TQueryDto query);
+
+        public virtual List<TDto> QueryAsync(TQueryDto query)
+        {
+            return new List<TDto>();
+        }
 
         protected AbstractRepository(DbContext context, IMapper mapper)
         {
@@ -36,11 +44,6 @@ namespace Data
             return dto;
         }
 
-        public Task<IEnumerable<TEntity>> FindAsync(Func<TEntity, bool> predicate)
-        {
-            return new(() => _context.Set<TEntity>().Where(predicate));
-        }
-
         public async Task<TDto> CreateAsync(TCreateDto entity)
         {
             var newEntity = mapper.Map<TCreateDto, TEntity>(entity);
@@ -54,7 +57,7 @@ namespace Data
             await _context.Set<TEntity>().AddAsync(newEntity);
             await _context.SaveChangesAsync();
 
-            var dto = mapper.Map<TEntity, TDto> (newEntity);
+            var dto = mapper.Map<TEntity, TDto>(newEntity);
 
             return dto;
         }
@@ -80,7 +83,7 @@ namespace Data
         public async Task<bool> DeleteAsync(Guid id)
         {
             var entity = GetQueryable().FirstOrDefault(entity => entity.Id == id);
-           
+
             if (entity == default) { throw new Exception("Not Found"); }
 
             _context.Set<TEntity>().Remove(entity);
@@ -107,6 +110,16 @@ namespace Data
             });
 
             await _context.SaveChangesAsync();
+        }
+
+        protected List<TDto> Find(Func<TEntity, bool> predicate)
+        {
+            var result = _context.Set<TEntity>().Where(predicate).ToList();
+
+            if (!result.Any())
+                return new List<TDto>();
+
+            return result.Select(item => mapper.Map<TEntity, TDto>(item)).ToList();
         }
     }
 }
