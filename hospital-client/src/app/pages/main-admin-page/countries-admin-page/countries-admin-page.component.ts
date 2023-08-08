@@ -1,49 +1,65 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
-  FormControl,
-  FormGroup,
-  FormsModule,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { CountryClient, CountryCreateDto } from 'src/client/client';
+import { CountryClient, CountryCreateDto, CountryDto, CountryQueryDto } from 'src/client/client';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { nameof } from 'src/utilites';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CountriesAdminPageNewCountryDialogComponent } from './countries-admin-page-new-country-dialog/countries-admin-page-new-country-dialog.component';
 
 @Component({
   selector: 'app-countries-admin-page',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
+    MatTableModule,
+    MatDialogModule
   ],
   templateUrl: './countries-admin-page.component.html',
   styleUrls: ['./countries-admin-page.component.less'],
 })
-export class CountriesAdminPageComponent {
-  form = new FormGroup({
-    title: new FormControl<string>('', [Validators.required]),
-  });
+export class CountriesAdminPageComponent implements OnInit {
+  private client = new CountryClient('http://localhost:5298');
 
-  get title() {
-    return this.form.controls.title as FormControl;
+  public countries: CountryDto[] = []
+  public displayedColumns: string[] = [nameof<CountryDto>("name")];
+
+  @ViewChild(MatTable) table!: MatTable<CountryDto>;
+
+  constructor(public dialog: MatDialog) { }
+
+  async ngOnInit(): Promise<void> {
+    this.fetchCountries()
   }
 
-  public async submit() {
-    if (this.form?.valid) {
-      const client = new CountryClient('http://localhost:5298');
-      const request = new CountryCreateDto({
-        name: this.form.controls.title.value!,
-      });
+  private async fetchCountries() {
+    const query = new CountryQueryDto({ name: "" })
+    this.countries = await this.client.query(query)
+  }
 
-      const response = await client.create(request);
-      console.warn(response);
-    }
+  public openDialog() {
+    const dto = new CountryCreateDto({ name: "" })
+
+    const dialogRef = this.dialog.open(CountriesAdminPageNewCountryDialogComponent, {
+      data: { dto },
+      width: '450px',
+      enterAnimationDuration: '0ms',
+      exitAnimationDuration: '0ms',
+    });
+
+    dialogRef.afterClosed().subscribe(async (request: CountryCreateDto) => {
+      const dto = await this.client.create(request);
+      this.countries.push(dto)
+      this.table.renderRows()
+    })
   }
 }

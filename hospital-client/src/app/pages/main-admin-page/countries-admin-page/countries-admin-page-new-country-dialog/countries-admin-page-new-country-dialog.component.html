@@ -1,0 +1,10 @@
+<h1>Новая страна</h1>
+<div>
+  <mat-form-field>
+    <input matInput #nameInput type="text" placeholder="Название" formControlName="title" appFocus
+      (keyup)="getValue(nameInput.value)" />
+  </mat-form-field>
+  <button mat-raised-button [mat-dialog-close]="data.dto" color="primary">
+    Добавить страну
+  </button>
+</div>
