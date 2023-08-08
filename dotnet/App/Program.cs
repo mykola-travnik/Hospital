@@ -33,11 +33,16 @@ builder.Services.AddScoped<ICityRepository, CityRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
 builder.Services.AddScoped<ISpecialisationRepository, SpecialisationRepository>();
+builder.Services.AddScoped<ISpecialisation_DoctorRepository, Specialisation_DoctorRepository>();
+builder.Services.AddScoped<IHospital_DoctorRepository, Hospital_DoctorRepository>();
 
 builder.Services.AddTransient<ICountryDataSeedService, CountryDataSeedService>();
 builder.Services.AddTransient<ICityDataSeedService, CityDataSeedService>();
+builder.Services.AddTransient<IDoctorDataSeedService, DoctorDataSeedService>();
 builder.Services.AddTransient<IHospitalDataSeedService, HospitalDataSeedService>();
 builder.Services.AddTransient<ISpecialisationDataSeedService, SpecialisationDataSeedService>();
+builder.Services.AddTransient<ISpecialisation_DoctorDataSeedService, Specialisation_DoctorDataSeedService>();
+builder.Services.AddTransient<IHospital_DoctorDataSeedService, Hospital_DoctorDataSeedService>();
 
 var app = builder.Build();
 

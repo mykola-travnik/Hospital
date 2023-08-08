@@ -9,7 +9,6 @@ public class DoctorDto : BaseDto
     public string? Description { get; set; }
     public string? FullDescription { get; set; }
     public DateOnly Birthday { get; set; }
-
 }
 
 

@@ -6,6 +6,5 @@ public class HospitalDto : BaseDto
     public string? Address { get; set; }
     public string? Phone { get; set; }
     public string? Photo { get; set; }
-
     public Guid CityId{ get; set; }
 }

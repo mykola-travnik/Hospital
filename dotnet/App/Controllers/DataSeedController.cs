@@ -13,18 +13,26 @@ namespace App.Controllers
         private readonly ICityDataSeedService cityDataSeedService;
         private readonly IHospitalDataSeedService hospitalDataSeedService;
         private readonly ISpecialisationDataSeedService specialisationDataSeedService;
+        private readonly IDoctorDataSeedService doctorDataSeedService;
+        private readonly IHospital_DoctorDataSeedService hospital_DoctorDataSeedService;
+        private readonly ISpecialisation_DoctorDataSeedService specialisation_DoctorDataSeedService;
 
         public DataSeedController(
             ICountryDataSeedService countryDataSeedService, 
             ICityDataSeedService cityDataSeedService,
             IHospitalDataSeedService hospitalDataSeedService,
-            ISpecialisationDataSeedService specialisationDataSeedService)
+            ISpecialisationDataSeedService specialisationDataSeedService,
+            IDoctorDataSeedService doctorDataSeedService,
+            IHospital_DoctorDataSeedService hospital_DoctorDataSeedService,
+            ISpecialisation_DoctorDataSeedService specialisation_DoctorDataSeedService)
         {
             this.countryDataSeedService = countryDataSeedService;
             this.cityDataSeedService = cityDataSeedService;
             this.hospitalDataSeedService = hospitalDataSeedService;
             this.specialisationDataSeedService = specialisationDataSeedService;
-
+            this.doctorDataSeedService = doctorDataSeedService;
+            this.hospital_DoctorDataSeedService = hospital_DoctorDataSeedService;
+            this.specialisation_DoctorDataSeedService = specialisation_DoctorDataSeedService;
         }
 
 
@@ -35,6 +43,9 @@ namespace App.Controllers
             await cityDataSeedService.DataSeedAsync();
             await hospitalDataSeedService.DataSeedAsync();
             await specialisationDataSeedService.DataSeedAsync();
+            await doctorDataSeedService.DataSeedAsync();
+            await hospital_DoctorDataSeedService.DataSeedAsync();
+            await specialisation_DoctorDataSeedService.DataSeedAsync();
         }
     }
 }
