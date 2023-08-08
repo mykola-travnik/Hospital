@@ -52,6 +52,7 @@ export class CountriesAdminPageComponent implements OnInit {
     const dialogRef = this.dialog.open(CountriesAdminPageNewCountryDialogComponent, {
       data: { dto },
       width: '450px',
+      height: '200px',
       enterAnimationDuration: '0ms',
       exitAnimationDuration: '0ms',
     });

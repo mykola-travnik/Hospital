@@ -1,10 +1,17 @@
-<h1>Новая страна</h1>
-<div>
-  <mat-form-field>
-    <input matInput #nameInput type="text" placeholder="Название" formControlName="title" appFocus
-      (keyup)="getValue(nameInput.value)" />
-  </mat-form-field>
-  <button mat-raised-button [mat-dialog-close]="data.dto" color="primary">
-    Добавить страну
-  </button>
+<div class="flex items-center justify-center pt-3">
+  <div class=" flex w-auto flex-row">
+    <div class="flex text-center">
+      <h1>Новая страна</h1>
+    </div>
+    <div class="flex text-center">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Название" [(ngModel)]="data.dto.name" />
+      </mat-form-field>
+    </div>
+    <div class="flex text-center">
+      <button mat-raised-button [mat-dialog-close]="data.dto" color="primary">
+        Добавить страну
+      </button>
+    </div>
+  </div>
 </div>
