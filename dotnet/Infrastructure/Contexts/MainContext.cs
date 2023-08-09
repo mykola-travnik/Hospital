@@ -12,11 +12,11 @@ namespace Infrastructure.Contexts
 
         public DbSet<Doctor> Doctor { get; set; } 
 
-        public DbSet<Hospital_Doctor> Hospital_Doctor { get; set; }
+        public DbSet<HospitalDoctor> Hospital_Doctor { get; set; }
 
         public DbSet<Specialisation> Specialisation { get; set; }
 
-        public DbSet<Specialisation_Doctor> Specialisation_Doctor { get; set; }
+        public DbSet<SpecialisationDoctor> Specialisation_Doctor { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

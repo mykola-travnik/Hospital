@@ -14,8 +14,8 @@ namespace App.Controllers
         private readonly IHospitalDataSeedService hospitalDataSeedService;
         private readonly ISpecialisationDataSeedService specialisationDataSeedService;
         private readonly IDoctorDataSeedService doctorDataSeedService;
-        private readonly IHospital_DoctorDataSeedService hospital_DoctorDataSeedService;
-        private readonly ISpecialisation_DoctorDataSeedService specialisation_DoctorDataSeedService;
+        private readonly IHospitalDoctorDataSeedService hospital_DoctorDataSeedService;
+        private readonly ISpecialisationDoctorDataSeedService specialisation_DoctorDataSeedService;
 
         public DataSeedController(
             ICountryDataSeedService countryDataSeedService, 
@@ -23,8 +23,8 @@ namespace App.Controllers
             IHospitalDataSeedService hospitalDataSeedService,
             ISpecialisationDataSeedService specialisationDataSeedService,
             IDoctorDataSeedService doctorDataSeedService,
-            IHospital_DoctorDataSeedService hospital_DoctorDataSeedService,
-            ISpecialisation_DoctorDataSeedService specialisation_DoctorDataSeedService)
+            IHospitalDoctorDataSeedService hospital_DoctorDataSeedService,
+            ISpecialisationDoctorDataSeedService specialisation_DoctorDataSeedService)
         {
             this.countryDataSeedService = countryDataSeedService;
             this.cityDataSeedService = cityDataSeedService;

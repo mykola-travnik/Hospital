@@ -4,11 +4,11 @@ using System.Data;
 
 namespace Business.DataSeedService
 {
-    public class Specialisation_DoctorDataSeedService : AbstractDataSeedService, IDataSeedService, ISpecialisation_DoctorDataSeedService
+    public class SpecialisationDoctorDataSeedService : IDataSeedService, ISpecialisationDoctorDataSeedService
     {
-        private readonly ISpecialisation_DoctorRepository repository;
+        private readonly ISpecialisationDoctorRepository repository;
 
-        public static Specialisation_Doctor Specialisation_Doctor0 = new Specialisation_Doctor()
+        public static SpecialisationDoctor Specialisation_Doctor0 = new SpecialisationDoctor()
         {
             Id = Guid.Parse("07B4E8C3-834B-4B06-9F07-72BB13770E1E"),
             IsDeleted = false,
@@ -20,7 +20,7 @@ namespace Business.DataSeedService
             Experience = DateOnly.Parse("2000-01-01")
         };
 
-        public static Specialisation_Doctor Specialisation_Doctor1 = new Specialisation_Doctor()
+        public static SpecialisationDoctor Specialisation_Doctor1 = new SpecialisationDoctor()
         {
             Id = Guid.Parse("40958322-32F3-4E84-9368-8CB5B128912F"),
             IsDeleted = false,
@@ -32,7 +32,7 @@ namespace Business.DataSeedService
             Experience = DateOnly.Parse("2001-01-01")
         };
 
-        public static Specialisation_Doctor Specialisation_Doctor2 = new Specialisation_Doctor()
+        public static SpecialisationDoctor Specialisation_Doctor2 = new SpecialisationDoctor()
         {
             Id = Guid.Parse("DD6A9DD9-1EC1-4850-BCBC-02E85856F422"),
             IsDeleted = false,
@@ -44,7 +44,7 @@ namespace Business.DataSeedService
             Experience = DateOnly.Parse("2002-01-01")
         };
 
-        public static Specialisation_Doctor Specialisation_Doctor3 = new Specialisation_Doctor()
+        public static SpecialisationDoctor Specialisation_Doctor3 = new SpecialisationDoctor()
         {
             Id = Guid.Parse("1213C2AD-67D3-45E3-8FAB-405FDE966C75"),
             IsDeleted = false,
@@ -56,7 +56,7 @@ namespace Business.DataSeedService
             Experience = DateOnly.Parse("2003-01-01")
         };
 
-        public static Specialisation_Doctor Specialisation_Doctor4 = new Specialisation_Doctor()
+        public static SpecialisationDoctor Specialisation_Doctor4 = new SpecialisationDoctor()
         {
             Id = Guid.Parse("337D815D-038F-4897-A9A0-A9BD9BBCC0D8"),
             IsDeleted = false,
@@ -68,14 +68,14 @@ namespace Business.DataSeedService
             Experience = DateOnly.Parse("2004-01-01")
         };
 
-        public Specialisation_DoctorDataSeedService(ISpecialisation_DoctorRepository repository)
+        public SpecialisationDoctorDataSeedService(ISpecialisationDoctorRepository repository)
         {
             this.repository = repository;
         }
 
-        public override async Task DataSeedAsync()
+        public async Task DataSeedAsync()
         {
-            await repository.SeedData(new List<Specialisation_Doctor> { Specialisation_Doctor0, Specialisation_Doctor1, Specialisation_Doctor2, Specialisation_Doctor3, Specialisation_Doctor4 });
+            await repository.SeedData(new List<SpecialisationDoctor> { Specialisation_Doctor0, Specialisation_Doctor1, Specialisation_Doctor2, Specialisation_Doctor3, Specialisation_Doctor4 });
         }
     }
 }

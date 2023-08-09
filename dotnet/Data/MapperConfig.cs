@@ -11,24 +11,24 @@ namespace Data
             CreateMap<Doctor, DoctorDto>().ReverseMap();
             CreateMap<Hospital, HospitalDto>().ReverseMap();
             CreateMap<Specialisation, SpecialisationDto>().ReverseMap();
-            CreateMap<Hospital_Doctor, Hospital_DoctorDto>().ReverseMap();
-            CreateMap<Specialisation_Doctor, Specialisation_DoctorDto>().ReverseMap();
+            CreateMap<HospitalDoctor, HospitalDoctorDto>().ReverseMap();
+            CreateMap<SpecialisationDoctor, SpecialisationDoctorDto>().ReverseMap();
 
             CreateMap<City, CityCreateDto>().ReverseMap();
             CreateMap<Country, CountryCreateDto>().ReverseMap();
             CreateMap<Doctor, DoctorCreateDto>().ReverseMap();
             CreateMap<Hospital, HospitalCreateDto>().ReverseMap();
             CreateMap<Specialisation, SpecialisationCreateDto>().ReverseMap();
-            CreateMap<Hospital_Doctor, Hospital_DoctorCreateDto>().ReverseMap();
-            CreateMap<Specialisation_Doctor, Specialisation_DoctorCreateDto>().ReverseMap();
+            CreateMap<HospitalDoctor, HospitalDoctorCreateDto>().ReverseMap();
+            CreateMap<SpecialisationDoctor, SpecialisationDoctorCreateDto>().ReverseMap();
 
             CreateMap<City, CityUpdateDto>().ReverseMap();
             CreateMap<Country, CountryUpdateDto>().ReverseMap();
             CreateMap<Doctor, DoctorUpdateDto>().ReverseMap();
             CreateMap<Hospital, HospitalUpdateDto>().ReverseMap();
             CreateMap<Specialisation, SpecialisationUpdateDto>().ReverseMap();
-            CreateMap<Hospital_Doctor, Hospital_DoctorUpdateDto>().ReverseMap();
-            CreateMap<Specialisation_Doctor, Specialisation_DoctorUpdateDto>().ReverseMap();
+            CreateMap<HospitalDoctor, HospitalDoctorUpdateDto>().ReverseMap();
+            CreateMap<SpecialisationDoctor, SpecialisationDoctorUpdateDto>().ReverseMap();
         }
     }
 }

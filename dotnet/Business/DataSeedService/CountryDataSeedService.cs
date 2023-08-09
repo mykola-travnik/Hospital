@@ -5,7 +5,7 @@ using System.Data;
 
 namespace Business.DataSeedService
 {
-    public class CountryDataSeedService : AbstractDataSeedService, IDataSeedService, ICountryDataSeedService
+    public class CountryDataSeedService : IDataSeedService, ICountryDataSeedService
     {
         private readonly ICountryRepository repository;
 
@@ -61,7 +61,7 @@ namespace Business.DataSeedService
             this.repository = repository;
         }
 
-        public override async Task DataSeedAsync()
+        public async Task DataSeedAsync()
         {
             await repository.SeedData(new List<Country> { Country0, Country1, Country2, Country3, Country4 });
         }

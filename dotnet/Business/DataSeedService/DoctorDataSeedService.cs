@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Business.DataSeedService
 {
-    public class DoctorDataSeedService : AbstractDataSeedService, IDataSeedService, IDoctorDataSeedService
+    public class DoctorDataSeedService : IDataSeedService, IDoctorDataSeedService
     {
         private readonly IDoctorRepository repository;
 
@@ -93,7 +93,7 @@ namespace Business.DataSeedService
             this.repository = repository;
         }
 
-        public override async Task DataSeedAsync()
+        public async Task DataSeedAsync()
         {
             await repository.SeedData(new List<Doctor> { Doctor0, Doctor1, Doctor2, Doctor3, Doctor4 });
         }
