@@ -31,7 +31,7 @@ export class CountriesAdminPageComponent implements OnInit {
   private client = new CountryClient('http://localhost:5298');
 
   public countries: CountryDto[] = []
-  public displayedColumns: string[] = [nameof<CountryDto>("name")];
+  public displayedColumns: string[] = [nameof<CountryDto>("name"), 'actions'];
 
   @ViewChild(MatTable) table!: MatTable<CountryDto>;
 
