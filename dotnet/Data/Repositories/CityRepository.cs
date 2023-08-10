@@ -9,5 +9,10 @@ namespace Data.Repositories
         public CityRepository(MainContext context, IMapper mapper) : base(context, mapper)
         {
         }
+
+        public List<CityDto> QueryAsync(CityQueryDto query)
+        {
+            return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
+        }
     }
 }

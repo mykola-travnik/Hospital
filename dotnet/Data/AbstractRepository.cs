@@ -17,7 +17,7 @@ namespace Data
 
         //public abstract List<TDto> QueryAsync(TQueryDto query);
 
-        public virtual List<TDto> QueryAsync(TQueryDto query)
+        public List<TDto> QueryAsync(TQueryDto query)
         {
             return new List<TDto>();
         }

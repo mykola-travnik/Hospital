@@ -9,5 +9,10 @@ namespace Data.Repositories
         public HospitalRepository(MainContext context, IMapper mapper) : base(context, mapper)
         {
         }
+        public List<HospitalDto> QueryAsync(HospitalQueryDto query)
+        {
+            return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
+        }
+
     }
 }

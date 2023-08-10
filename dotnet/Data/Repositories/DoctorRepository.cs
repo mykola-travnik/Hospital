@@ -9,7 +9,7 @@ namespace Data.Repositories
         public DoctorRepository(MainContext context, IMapper mapper) : base(context, mapper)
         {
         }
-        public override List<DoctorDto> QueryAsync(DoctorQueryDto query)
+        public List<DoctorDto> QueryAsync(DoctorQueryDto query)
         {
             if (string.IsNullOrWhiteSpace(query.FullName))
                 return Find(entity => true);

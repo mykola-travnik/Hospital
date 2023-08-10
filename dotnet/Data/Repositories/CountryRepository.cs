@@ -10,7 +10,7 @@ namespace Data.Repositories
         {
         }
 
-        public override List<CountryDto> QueryAsync(CountryQueryDto query)
+        public List<CountryDto> QueryAsync(CountryQueryDto query)
         {
             return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
         }

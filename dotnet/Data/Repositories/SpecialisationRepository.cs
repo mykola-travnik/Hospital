@@ -9,5 +9,10 @@ namespace Data.Repositories
         public SpecialisationRepository(MainContext context, IMapper mapper) : base(context, mapper)
         {
         }
+        public List<SpecialisationDto> QueryAsync(SpecialisationQueryDto query)
+        {
+            return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
+        }
+
     }
 }
