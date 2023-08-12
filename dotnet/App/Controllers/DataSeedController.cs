@@ -14,8 +14,10 @@ namespace App.Controllers
         private readonly IHospitalDataSeedService hospitalDataSeedService;
         private readonly ISpecialisationDataSeedService specialisationDataSeedService;
         private readonly IDoctorDataSeedService doctorDataSeedService;
-        private readonly IHospitalDoctorDataSeedService hospital_DoctorDataSeedService;
-        private readonly ISpecialisationDoctorDataSeedService specialisation_DoctorDataSeedService;
+        private readonly IHospitalDoctorDataSeedService hospitalDoctorDataSeedService;
+        private readonly ISpecialisationDoctorDataSeedService specialisationDoctorDataSeedService;
+        private readonly IRoleDataSeedService roleDataSeedService;
+        private readonly IUserDataSeedService userDataSeedService;
 
         public DataSeedController(
             ICountryDataSeedService countryDataSeedService, 
@@ -24,15 +26,19 @@ namespace App.Controllers
             ISpecialisationDataSeedService specialisationDataSeedService,
             IDoctorDataSeedService doctorDataSeedService,
             IHospitalDoctorDataSeedService hospital_DoctorDataSeedService,
-            ISpecialisationDoctorDataSeedService specialisation_DoctorDataSeedService)
+            ISpecialisationDoctorDataSeedService specialisation_DoctorDataSeedService,
+            IRoleDataSeedService roleDataSeedService,
+            IUserDataSeedService userDataSeedService)
         {
             this.countryDataSeedService = countryDataSeedService;
             this.cityDataSeedService = cityDataSeedService;
             this.hospitalDataSeedService = hospitalDataSeedService;
             this.specialisationDataSeedService = specialisationDataSeedService;
             this.doctorDataSeedService = doctorDataSeedService;
-            this.hospital_DoctorDataSeedService = hospital_DoctorDataSeedService;
-            this.specialisation_DoctorDataSeedService = specialisation_DoctorDataSeedService;
+            this.hospitalDoctorDataSeedService = hospital_DoctorDataSeedService;
+            this.specialisationDoctorDataSeedService = specialisation_DoctorDataSeedService;
+            this.roleDataSeedService = roleDataSeedService;
+            this.userDataSeedService = userDataSeedService;
         }
 
 
@@ -44,8 +50,10 @@ namespace App.Controllers
             await hospitalDataSeedService.DataSeedAsync();
             await specialisationDataSeedService.DataSeedAsync();
             await doctorDataSeedService.DataSeedAsync();
-            await hospital_DoctorDataSeedService.DataSeedAsync();
-            await specialisation_DoctorDataSeedService.DataSeedAsync();
+            await hospitalDoctorDataSeedService.DataSeedAsync();
+            await specialisationDoctorDataSeedService.DataSeedAsync();
+            await roleDataSeedService.DataSeedAsync();
+            await userDataSeedService.DataSeedAsync();
         }
     }
 }

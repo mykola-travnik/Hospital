@@ -1,0 +1,31 @@
+﻿using Data.Repositories;
+
+namespace Business.DataSeedService
+{
+    public class UserDataSeedService : IUserDataSeedService
+    {
+        private readonly IUserRepository repository;
+
+        public static User User0 = new User()
+        {
+            Id = Guid.Parse("FCD5A2F2-2E48-4620-A843-F8E0D82BC109"),
+            Name = "user",
+            Password = "password",
+            IsDeleted = false,
+            CreationTimestamp = DateTime.Now.ToUniversalTime(),
+            ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
+            DeletedTimestamp = null,
+            Roles = new List<Role>() { RoleDataSeedService.AdminRole },
+        };
+
+        public UserDataSeedService(IUserRepository repository)
+        {
+            this.repository = repository;
+        }
+
+        public async Task DataSeedAsync()
+        {
+            await repository.CreateOrUpdateRangeAsync(new List<User> { User0 });
+        }
+    }
+}

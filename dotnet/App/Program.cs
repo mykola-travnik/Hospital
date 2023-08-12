@@ -89,6 +89,9 @@ builder.Services.AddTransient<IHospitalDataSeedService, HospitalDataSeedService>
 builder.Services.AddTransient<ISpecialisationDataSeedService, SpecialisationDataSeedService>();
 builder.Services.AddTransient<ISpecialisationDoctorDataSeedService, SpecialisationDoctorDataSeedService>();
 builder.Services.AddTransient<IHospitalDoctorDataSeedService, HospitalDoctorDataSeedService>();
+builder.Services.AddTransient<IUserDataSeedService, UserDataSeedService>();
+builder.Services.AddTransient<IRoleDataSeedService, RoleDataSeedService>();
+
 
 var app = builder.Build();
 

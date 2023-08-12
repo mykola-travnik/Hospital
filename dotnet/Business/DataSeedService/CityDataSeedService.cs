@@ -1,6 +1,4 @@
 ﻿using Data.Repositories;
-using Microsoft.VisualBasic;
-using System.Data;
 
 namespace Business.DataSeedService
 {
