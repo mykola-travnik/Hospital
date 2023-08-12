@@ -2,10 +2,11 @@
 
 public class HospitalDoctorDto : BaseDto
 {
-    public Guid HospitalId { get; set; }
-    public Guid DoctorId { get; set; }
-    public Guid SpecialisationId { get; set; } 
     public double? Price { get; set; }
+
+    public HospitalDto Hospital { get; set; }
+
+    public DoctorDto Doctor { get; set; }
+
+    public SpecialisationDto Specialisation { get; set; }
 }
-
-

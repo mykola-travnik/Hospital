@@ -23,5 +23,12 @@ namespace Infrastructure.Contexts
             optionsBuilder.UseNpgsql("Host=localhost;Port=5400;Database=project;Username=postgres;Password=docker");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Doctor).AutoInclude();
+            modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
+            modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Hospital).AutoInclude();
+        }
+
     }
 }
