@@ -4,15 +4,15 @@ using Infrastructure.Contexts;
 
 namespace Data.Repositories
 {
-    public class SpecialisationRepository : AbstractRepository<Specialisation, SpecialisationDto, SpecialisationCreateDto, SpecialisationUpdateDto, SpecialisationQueryDto>, ISpecialisationRepository
+    public class SpecialisationRepository : AbstractRepository<Specialisation>, ISpecialisationRepository
     {
-        public SpecialisationRepository(MainContext context, IMapper mapper) : base(context, mapper)
+        public SpecialisationRepository(MainContext context) : base(context)
         {
         }
-        public List<SpecialisationDto> QueryAsync(SpecialisationQueryDto query)
-        {
-            return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
-        }
+        //public List<SpecialisationDto> QueryAsync(SpecialisationQueryDto query)
+        //{
+        //    return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
+        //}
 
     }
 }

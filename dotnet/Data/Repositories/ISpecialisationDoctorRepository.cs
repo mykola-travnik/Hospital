@@ -2,5 +2,5 @@
 
 namespace Data.Repositories
 {
-    public interface ISpecialisationDoctorRepository : IRepository<SpecialisationDoctor, SpecialisationDoctorDto, SpecialisationDoctorCreateDto, SpecialisationDoctorUpdateDto, BaseQueryDto> { }
+    public interface ISpecialisationDoctorRepository : IRepository<SpecialisationDoctor> { }
 }

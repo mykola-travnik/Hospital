@@ -5,18 +5,18 @@ using Infrastructure.Contexts;
 
 namespace Data.Repositories
 {
-    public class HospitalDoctorRepository : AbstractRepository<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto, HospitalDoctorUpdateDto, HospitalDoctorQueryDto>, IHospitalDoctorRepository
+    public class HospitalDoctorRepository : AbstractRepository<HospitalDoctor>, IHospitalDoctorRepository
     {
-        public HospitalDoctorRepository(MainContext context, IMapper mapper) : base(context, mapper)
+        public HospitalDoctorRepository(MainContext context) : base(context)
         {
         }
 
-        public List<HospitalDoctorDto> QueryAsync(HospitalDoctorQueryDto query)
-        {
-            if (query.Price == null || query.Price == 0)
-                return Find(entity => true);
+        //public List<HospitalDoctorDto> QueryAsync(HospitalDoctorQueryDto query)
+        //{
+        //    if (query.Price == null || query.Price == 0)
+        //        return Find(entity => true);
 
-            return Find(entity => entity.Price == query.Price);
-        }
+        //    return Find(entity => entity.Price == query.Price);
+        //}
     }
 }

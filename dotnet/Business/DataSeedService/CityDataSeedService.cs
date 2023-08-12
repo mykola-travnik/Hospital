@@ -70,7 +70,7 @@ namespace Business.DataSeedService
 
         public async Task DataSeedAsync()
         {
-            await repository.SeedData(new List<City> { City0, City1, City2, City3, City4 });
+            //await repository.SeedData(new List<City> { City0, City1, City2, City3, City4 });
         }
     }
 }

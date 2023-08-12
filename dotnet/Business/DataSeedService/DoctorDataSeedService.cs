@@ -95,7 +95,7 @@ namespace Business.DataSeedService
 
         public async Task DataSeedAsync()
         {
-            await repository.SeedData(new List<Doctor> { Doctor0, Doctor1, Doctor2, Doctor3, Doctor4 });
+            //await repository.SeedData(new List<Doctor> { Doctor0, Doctor1, Doctor2, Doctor3, Doctor4 });
         }
     }
 }

@@ -82,7 +82,7 @@ namespace Business.DataSeedService
 
         public async Task DataSeedAsync()
         {
-            await repository.SeedData(new List<HospitalDoctor> { Hospital_Doctor0, Hospital_Doctor1, Hospital_Doctor2, Hospital_Doctor3, Hospital_Doctor4 });
+            //await repository.SeedData(new List<HospitalDoctor> { Hospital_Doctor0, Hospital_Doctor1, Hospital_Doctor2, Hospital_Doctor3, Hospital_Doctor4 });
         }
     }
 }

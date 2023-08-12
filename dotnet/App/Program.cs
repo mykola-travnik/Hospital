@@ -1,5 +1,6 @@
 using Business;
 using Business.DataSeedService;
+using Business.Services;
 using Data;
 using Data.Repositories;
 using Infrastructure.Contexts;
@@ -37,6 +38,10 @@ builder.Services.AddScoped<ISpecialisationRepository, SpecialisationRepository>(
 builder.Services.AddScoped<ISpecialisationDoctorRepository, SpecialisationDoctorRepository>();
 builder.Services.AddScoped<IHospitalDoctorRepository, HospitalDoctorRepository>();
 
+// Services
+builder.Services.AddScoped<ICountryService, CountryService>();
+
+// Data seeding services
 builder.Services.AddTransient<ICountryDataSeedService, CountryDataSeedService>();
 builder.Services.AddTransient<ICityDataSeedService, CityDataSeedService>();
 builder.Services.AddTransient<IDoctorDataSeedService, DoctorDataSeedService>();

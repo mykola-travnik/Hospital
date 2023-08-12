@@ -4,18 +4,18 @@ using Infrastructure.Contexts;
 
 namespace Data.Repositories
 {
-    public class DoctorRepository : AbstractRepository<Doctor, DoctorDto, DoctorCreateDto, DoctorUpdateDto, DoctorQueryDto>, IDoctorRepository
+    public class DoctorRepository : AbstractRepository<Doctor>, IDoctorRepository
     {
-        public DoctorRepository(MainContext context, IMapper mapper) : base(context, mapper)
+        public DoctorRepository(MainContext context) : base(context)
         {
         }
-        public List<DoctorDto> QueryAsync(DoctorQueryDto query)
-        {
-            if (string.IsNullOrWhiteSpace(query.FullName))
-                return Find(entity => true);
+        //public List<DoctorDto> QueryAsync(DoctorQueryDto query)
+        //{
+        //    if (string.IsNullOrWhiteSpace(query.FullName))
+        //        return Find(entity => true);
 
-            return Find(entity => entity.FirstName.ToLower().StartsWith(query.FullName.ToLower()) ||
-                entity.LastName.ToLower().StartsWith(query.FullName.ToLower()));
-        }
+        //    return Find(entity => entity.FirstName.ToLower().StartsWith(query.FullName.ToLower()) ||
+        //        entity.LastName.ToLower().StartsWith(query.FullName.ToLower()));
+        //}
     }
 }

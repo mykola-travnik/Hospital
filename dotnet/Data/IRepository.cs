@@ -2,19 +2,13 @@
 
 namespace Data
 {
-    public interface IRepository<TEntity, TDto, TCreateDto, TUpdateDto, TQueryDto> 
+    public interface IRepository<TEntity> 
         where TEntity : BaseEntity 
-        where TDto : BaseDto, new()
-        where TCreateDto : BaseCreateDto, new()
-        where TUpdateDto : BaseUpdateDto, new()
-        where TQueryDto : BaseQueryDto, new()
     {
         public IQueryable<TEntity> GetQueryable();
-        public TDto Get(Guid id);
-        public List<TDto> QueryAsync(TQueryDto query);
-        public Task<TDto> CreateAsync(TCreateDto item);
-        public Task<TDto> UpdateAsync(TUpdateDto item);
+        public TEntity Get(Guid id);
+        public Task<TEntity> CreateAsync(TEntity item);
+        public Task<TEntity> UpdateAsync(TEntity item);
         public Task<bool> DeleteAsync(Guid id);
-        public Task SeedData(List<TEntity> entities);
     }
 }

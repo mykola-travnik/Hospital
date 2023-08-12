@@ -1,15 +1,15 @@
-﻿using Data.QueryDto;
-using Data.Repositories;
-using Microsoft.AspNetCore.Mvc;
+﻿//using Data.QueryDto;
+//using Data.Repositories;
+//using Microsoft.AspNetCore.Mvc;
 
-namespace App.Controllers
-{
-    [ApiController]
-    [Route("[controller]")]
-    public class HospitalController : AbstractController<Hospital, HospitalDto, HospitalCreateDto, HospitalUpdateDto, HospitalQueryDto>
-    {
-        public HospitalController(IHospitalRepository hospitalRepository) : base(hospitalRepository)
-        {
-        }
-    }
-}
+//namespace App.Controllers
+//{
+//    [ApiController]
+//    [Route("[controller]")]
+//    public class HospitalController : AbstractController<Hospital, HospitalDto, HospitalCreateDto, HospitalUpdateDto, HospitalQueryDto>
+//    {
+//        public HospitalController(IHospitalRepository hospitalRepository) : base(hospitalRepository)
+//        {
+//        }
+//    }
+//}

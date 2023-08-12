@@ -4,15 +4,15 @@ using Infrastructure.Contexts;
 
 namespace Data.Repositories
 {
-    public class CityRepository : AbstractRepository<City, CityDto, CityCreateDto, CityUpdateDto, CityQueryDto>, ICityRepository
+    public class CityRepository : AbstractRepository<City>, ICityRepository
     {
-        public CityRepository(MainContext context, IMapper mapper) : base(context, mapper)
+        public CityRepository(MainContext context) : base(context)
         {
         }
 
-        public List<CityDto> QueryAsync(CityQueryDto query)
-        {
-            return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
-        }
+        //public List<CityDto> QueryAsync(CityQueryDto query)
+        //{
+        //    return Find(entity => entity.Name.ToLower().StartsWith(query.Name.ToLower()));
+        //}
     }
 }

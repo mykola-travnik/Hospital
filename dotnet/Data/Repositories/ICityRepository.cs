@@ -2,5 +2,5 @@
 
 namespace Data.Repositories
 {
-    public interface ICityRepository: IRepository<City, CityDto, CityCreateDto, CityUpdateDto, CityQueryDto> { }
+    public interface ICityRepository: IRepository<City> { }
 }
