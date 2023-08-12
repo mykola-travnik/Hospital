@@ -1,5 +1,4 @@
-﻿using App;
-using Business;
+﻿using Business;
 using Business.DataSeedService;
 using Business.Services;
 using Data;
@@ -68,7 +67,6 @@ builder.Services.AddScoped<IHospitalDoctorRepository, HospitalDoctorRepository>(
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-
 // Services
 builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
@@ -79,7 +77,7 @@ builder.Services.AddScoped<ISpecialisationDoctorService, SpecialisationDoctorSer
 builder.Services.AddScoped<ISpecialisationService, SpecialisationService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Data seeding services
 builder.Services.AddTransient<ICountryDataSeedService, CountryDataSeedService>();
@@ -91,7 +89,6 @@ builder.Services.AddTransient<ISpecialisationDoctorDataSeedService, Specialisati
 builder.Services.AddTransient<IHospitalDoctorDataSeedService, HospitalDoctorDataSeedService>();
 builder.Services.AddTransient<IUserDataSeedService, UserDataSeedService>();
 builder.Services.AddTransient<IRoleDataSeedService, RoleDataSeedService>();
-
 
 var app = builder.Build();
 
@@ -107,21 +104,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseCors();
-
-app.Map("/login/{username}", (string username) =>
-{
-    var claims = new List<Claim> { new Claim("UserName", username) };
-    // создаем JWT-токен
-    var jwt = new JwtSecurityToken(
-            issuer: AuthOptions.ISSUER,
-            audience: AuthOptions.AUDIENCE,
-            claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
-            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-    return new JwtSecurityTokenHandler().WriteToken(jwt);
-});
-
-app.Map("/data", [Authorize] () => new { message = "Hello World!" });
 
 app.Run();

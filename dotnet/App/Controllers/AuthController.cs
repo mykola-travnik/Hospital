@@ -1,19 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers
 {
     public class AuthController : ControllerBase
     {
-        [HttpGet(nameof(LogIn))]
-        public async Task<string> LogIn(string username, string password)
+        private readonly IAuthService authService;
+
+        public AuthController(IAuthService authService)
         {
-            throw new NotImplementedException();
+            this.authService = authService;
+        }
+
+        [HttpGet(nameof(LogIn))]
+        public string LogIn(string username, string password)
+        {
+            return authService.LogIn(username, password);
         }
 
         [HttpPost(nameof(SignIn))]
         public async Task<UserDto> SignIn(string username, string password)
         {
-            throw new NotImplementedException();
+            return await authService.SignIn(username, password);
         }
     }
 }

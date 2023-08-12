@@ -10,7 +10,7 @@ namespace Business.DataSeedService
         {
             Id = Guid.Parse("FCD5A2F2-2E48-4620-A843-F8E0D82BC109"),
             Name = "user",
-            Password = "password",
+            Password = HashHelpers.GetHashString("password"),
             IsDeleted = false,
             CreationTimestamp = DateTime.Now.ToUniversalTime(),
             ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
