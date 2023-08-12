@@ -1,6 +1,4 @@
-﻿using Domain;
-
-namespace Data.Repositories
+﻿namespace Data.Repositories
 {
     public interface ISpecialisationDoctorRepository : IRepository<SpecialisationDoctor> { }
 }

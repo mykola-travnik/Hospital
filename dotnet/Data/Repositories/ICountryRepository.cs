@@ -1,6 +1,4 @@
-﻿using Data.QueryDto;
-
-namespace Data.Repositories
+﻿namespace Data.Repositories
 {
-    public interface ICountryRepository: IRepository<Country> { }
+    public interface ICountryRepository : IRepository<Country> { }
 }

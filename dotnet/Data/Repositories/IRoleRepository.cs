@@ -1,6 +1,4 @@
-﻿using Data.QueryDto;
-
-namespace Data.Repositories
+﻿namespace Data.Repositories
 {
-    public interface IRoleRepository: IRepository<Role> { }
+    public interface IRoleRepository : IRepository<Role> { }
 }

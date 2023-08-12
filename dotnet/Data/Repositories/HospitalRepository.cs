@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using Data.QueryDto;
-using Infrastructure.Contexts;
+﻿using Infrastructure.Contexts;
 
 namespace Data.Repositories
 {
