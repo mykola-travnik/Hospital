@@ -34,7 +34,12 @@ export class HospitalsAdminPageComponent implements OnInit {
   private client = new HospitalClient('http://localhost:5298');
 
   public hospitals: HospitalDto[] = [];
-  public displayedColumns: string[] = [nameof<HospitalDto>('name'), 'actions'];
+  public displayedColumns: string[] = [
+    nameof<HospitalDto>('name'),
+    nameof<HospitalDto>('address'),
+    nameof<HospitalDto>('photo'),
+    nameof<HospitalDto>('cityId'),
+  ];
 
   @ViewChild(MatTable) table!: MatTable<HospitalDto>;
 

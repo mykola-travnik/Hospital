@@ -34,7 +34,10 @@ export class CitiesAdminPageComponent implements OnInit {
   private client = new CityClient('http://localhost:5298');
 
   public cities: CityDto[] = [];
-  public displayedColumns: string[] = [nameof<CityDto>('name'), 'actions'];
+  public displayedColumns: string[] = [
+    nameof<CityDto>('name'),
+    nameof<CityDto>('countryId'),
+  ];
 
   @ViewChild(MatTable) table!: MatTable<CityDto>;
 

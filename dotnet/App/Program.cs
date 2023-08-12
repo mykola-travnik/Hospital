@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainContext>();
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
+
 builder.Services.AddCors(options =>
 {
 

@@ -47,6 +47,13 @@ export const routes: Route[] = [
             './pages/main-admin-page/specialisations-admin-page/specialisations-admin-page.component'
           ).then((c) => c.SpecialisationsAdminPageComponent),
       },
+      {
+        path: 'admin-hospitalDoctors',
+        loadComponent: () =>
+          import(
+            './pages/main-admin-page/hospitalDoctors-admin-page/hospitalDoctors-admin-page.component'
+          ).then((c) => c.HospitalDoctorsAdminPageComponent),
+      },
     ],
   },
 ];

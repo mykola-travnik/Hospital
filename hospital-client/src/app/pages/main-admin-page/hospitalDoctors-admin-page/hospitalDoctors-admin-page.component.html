@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+      Добавить цену
+    </button>
+  </div>
+  <div class="row">
+    <table mat-table [dataSource]="hospitalDoctors" class="mat-elevation-z8">
+      <ng-container matColumnDef="hospitalId">
+        <th mat-header-cell *matHeaderCellDef>Поликлиника</th>
+        <td mat-cell *matCellDef="let element">{{ element.hospitalId }}</td>
+      </ng-container>
+      <ng-container matColumnDef="doctorId">
+        <th mat-header-cell *matHeaderCellDef>Врач</th>
+        <td mat-cell *matCellDef="let element">{{ element.doctorId }}</td>
+      </ng-container>
+      <ng-container matColumnDef="specialisationId">
+        <th mat-header-cell *matHeaderCellDef>Специализация</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.specialisationId }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Цена</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

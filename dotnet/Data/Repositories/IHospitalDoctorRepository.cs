@@ -2,5 +2,5 @@
 
 namespace Data.Repositories
 {
-    public interface IHospitalDoctorRepository: IRepository<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto, HospitalDoctorUpdateDto, BaseQueryDto> { }
+    public interface IHospitalDoctorRepository: IRepository<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto, HospitalDoctorUpdateDto, HospitalDoctorQueryDto> { }
 }

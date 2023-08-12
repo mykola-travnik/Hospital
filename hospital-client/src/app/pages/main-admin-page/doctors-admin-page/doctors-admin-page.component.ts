@@ -36,7 +36,11 @@ export class DoctorsAdminPageComponent implements OnInit {
   public doctors: DoctorDto[] = [];
   public displayedColumns: string[] = [
     nameof<DoctorDto>('firstName'),
-    'actions',
+    nameof<DoctorDto>('lastName'),
+    nameof<DoctorDto>('phone'),
+    nameof<DoctorDto>('description'),
+    nameof<DoctorDto>('fullDescription'),
+    nameof<DoctorDto>('birthday'),
   ];
 
   @ViewChild(MatTable) table!: MatTable<DoctorDto>;

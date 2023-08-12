@@ -15,8 +15,6 @@ namespace Data
         private readonly DbContext _context;
         private readonly IMapper mapper;
 
-        //public abstract List<TDto> QueryAsync(TQueryDto query);
-
         public List<TDto> QueryAsync(TQueryDto query)
         {
             return new List<TDto>();

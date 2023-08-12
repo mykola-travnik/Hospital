@@ -34,10 +34,7 @@ export class SpecialisationsAdminPageComponent implements OnInit {
   private client = new SpecialisationClient('http://localhost:5298');
 
   public specialisations: SpecialisationDto[] = [];
-  public displayedColumns: string[] = [
-    nameof<SpecialisationDto>('name'),
-    'actions',
-  ];
+  public displayedColumns: string[] = [nameof<SpecialisationDto>('name')];
 
   @ViewChild(MatTable) table!: MatTable<SpecialisationDto>;
 
