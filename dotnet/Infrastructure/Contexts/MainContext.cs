@@ -18,6 +18,10 @@ namespace Infrastructure.Contexts
 
         public DbSet<SpecialisationDoctor> Specialisation_Doctor { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseNpgsql("Host=localhost;Port=5400;Database=project;Username=postgres;Password=docker");
