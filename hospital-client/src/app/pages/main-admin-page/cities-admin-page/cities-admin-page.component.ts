@@ -36,12 +36,12 @@ export class CitiesAdminPageComponent implements OnInit {
   public cities: CityDto[] = [];
   public displayedColumns: string[] = [
     nameof<CityDto>('name'),
-    nameof<CityDto>('countryId'),
+    nameof<CityDto>('country'),
   ];
 
   @ViewChild(MatTable) table!: MatTable<CityDto>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchcities();

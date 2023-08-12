@@ -20,7 +20,6 @@ namespace Data
             return _context.Set<TEntity>().AsQueryable();
         }
 
-
         TEntity IRepository<TEntity>.Get(Guid id)
         {
             var entity = GetQueryable().FirstOrDefault(entity => entity.Id == id);

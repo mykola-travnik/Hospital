@@ -35,15 +35,15 @@ export class HospitalDoctorsAdminPageComponent implements OnInit {
 
   public hospitalDoctors: HospitalDoctorDto[] = [];
   public displayedColumns: string[] = [
-    nameof<HospitalDoctorDto>('hospitalId'),
-    nameof<HospitalDoctorDto>('doctorId'),
-    nameof<HospitalDoctorDto>('specialisationId'),
+    nameof<HospitalDoctorDto>('hospital'),
+    nameof<HospitalDoctorDto>('doctor'),
+    nameof<HospitalDoctorDto>('specialisation'),
     nameof<HospitalDoctorDto>('price'),
   ];
 
   @ViewChild(MatTable) table!: MatTable<HospitalDoctorDto>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchHospitalDoctors();

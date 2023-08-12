@@ -10,7 +10,7 @@ namespace Infrastructure.Contexts
 
         public DbSet<City> City { get; set; }
 
-        public DbSet<Doctor> Doctor { get; set; } 
+        public DbSet<Doctor> Doctor { get; set; }
 
         public DbSet<HospitalDoctor> Hospital_Doctor { get; set; }
 
@@ -25,9 +25,16 @@ namespace Infrastructure.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<City>().Navigation(entity => entity.Country).AutoInclude();
+
+            modelBuilder.Entity<Hospital>().Navigation(entity => entity.City).AutoInclude();
+
             modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Doctor).AutoInclude();
             modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
             modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Hospital).AutoInclude();
+
+            modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Doctor).AutoInclude();
+            modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
         }
 
     }

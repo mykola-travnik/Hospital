@@ -39,7 +39,13 @@ builder.Services.AddScoped<ISpecialisationDoctorRepository, SpecialisationDoctor
 builder.Services.AddScoped<IHospitalDoctorRepository, HospitalDoctorRepository>();
 
 // Services
+builder.Services.AddScoped<ICityService, CityService>();
 builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+builder.Services.AddScoped<IHospitalDoctorService, HospitalDoctorService>();
+builder.Services.AddScoped<IHospitalService, HospitalService>();
+builder.Services.AddScoped<ISpecialisationDoctorService, SpecialisationDoctorService>();
+builder.Services.AddScoped<ISpecialisationService, SpecialisationService>();
 
 // Data seeding services
 builder.Services.AddTransient<ICountryDataSeedService, CountryDataSeedService>();

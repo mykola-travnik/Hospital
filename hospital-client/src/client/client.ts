@@ -1884,6 +1884,372 @@ export class SpecialisationClient {
     }
 }
 
+export class SpecialisationDoctorClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance ? instance : axios.create();
+
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    get(id: string | undefined, cancelToken?: CancelToken | undefined): Promise<SpecialisationDoctorDto> {
+        let url_ = this.baseUrl + "/SpecialisationDoctor/Get?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGet(_response);
+        });
+    }
+
+    protected processGet(response: AxiosResponse): Promise<SpecialisationDoctorDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = SpecialisationDoctorDto.fromJS(resultData200);
+            return Promise.resolve<SpecialisationDoctorDto>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<SpecialisationDoctorDto>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    create(body: SpecialisationDoctorCreateDto | undefined, cancelToken?: CancelToken | undefined): Promise<SpecialisationDoctorDto> {
+        let url_ = this.baseUrl + "/SpecialisationDoctor/Create";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processCreate(_response);
+        });
+    }
+
+    protected processCreate(response: AxiosResponse): Promise<SpecialisationDoctorDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = SpecialisationDoctorDto.fromJS(resultData200);
+            return Promise.resolve<SpecialisationDoctorDto>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<SpecialisationDoctorDto>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    update(body: SpecialisationDoctorUpdateDto | undefined, cancelToken?: CancelToken | undefined): Promise<SpecialisationDoctorDto> {
+        let url_ = this.baseUrl + "/SpecialisationDoctor/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processUpdate(_response);
+        });
+    }
+
+    protected processUpdate(response: AxiosResponse): Promise<SpecialisationDoctorDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = SpecialisationDoctorDto.fromJS(resultData200);
+            return Promise.resolve<SpecialisationDoctorDto>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<SpecialisationDoctorDto>(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    delete(id: string | undefined, cancelToken?: CancelToken | undefined): Promise<boolean> {
+        let url_ = this.baseUrl + "/SpecialisationDoctor/Delete?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "DELETE",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processDelete(_response);
+        });
+    }
+
+    protected processDelete(response: AxiosResponse): Promise<boolean> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return Promise.resolve<boolean>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<boolean>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    query(body: SpecialisationDoctorQueryDto | undefined, cancelToken?: CancelToken | undefined): Promise<SpecialisationDoctorDto[]> {
+        let url_ = this.baseUrl + "/SpecialisationDoctor/Query";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processQuery(_response);
+        });
+    }
+
+    protected processQuery(response: AxiosResponse): Promise<SpecialisationDoctorDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(SpecialisationDoctorDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<SpecialisationDoctorDto[]>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<SpecialisationDoctorDto[]>(null as any);
+    }
+}
+
+export class City implements ICity {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    name?: string | undefined;
+    countryId?: string;
+    country?: Country;
+
+    constructor(data?: ICity) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.isDeleted = _data["isDeleted"];
+            this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
+            this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
+            this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
+            this.name = _data["name"];
+            this.countryId = _data["countryId"];
+            this.country = _data["country"] ? Country.fromJS(_data["country"]) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): City {
+        data = typeof data === 'object' ? data : {};
+        let result = new City();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["isDeleted"] = this.isDeleted;
+        data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
+        data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
+        data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
+        data["name"] = this.name;
+        data["countryId"] = this.countryId;
+        data["country"] = this.country ? this.country.toJSON() : <any>undefined;
+        return data;
+    }
+}
+
+export interface ICity {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    name?: string | undefined;
+    countryId?: string;
+    country?: Country;
+}
+
 export class CityCreateDto implements ICityCreateDto {
     name?: string | undefined;
     countryId?: string;
@@ -1931,7 +2297,7 @@ export class CityDto implements ICityDto {
     modifiedTimestamp?: Date;
     deletedTimestamp?: Date | undefined;
     name?: string | undefined;
-    countryId?: string;
+    country?: Country;
 
     constructor(data?: ICityDto) {
         if (data) {
@@ -1950,7 +2316,7 @@ export class CityDto implements ICityDto {
             this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
             this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
             this.name = _data["name"];
-            this.countryId = _data["countryId"];
+            this.country = _data["country"] ? Country.fromJS(_data["country"]) : <any>undefined;
         }
     }
 
@@ -1969,7 +2335,7 @@ export class CityDto implements ICityDto {
         data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
         data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
         data["name"] = this.name;
-        data["countryId"] = this.countryId;
+        data["country"] = this.country ? this.country.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -1981,7 +2347,7 @@ export interface ICityDto {
     modifiedTimestamp?: Date;
     deletedTimestamp?: Date | undefined;
     name?: string | undefined;
-    countryId?: string;
+    country?: Country;
 }
 
 export class CityQueryDto implements ICityQueryDto {
@@ -2062,6 +2428,62 @@ export interface ICityUpdateDto {
     id?: string;
     name?: string | undefined;
     countryId?: string;
+}
+
+export class Country implements ICountry {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    name?: string | undefined;
+
+    constructor(data?: ICountry) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.isDeleted = _data["isDeleted"];
+            this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
+            this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
+            this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): Country {
+        data = typeof data === 'object' ? data : {};
+        let result = new Country();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["isDeleted"] = this.isDeleted;
+        data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
+        data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
+        data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
+        data["name"] = this.name;
+        return data;
+    }
+}
+
+export interface ICountry {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    name?: string | undefined;
 }
 
 export class CountryCreateDto implements ICountryCreateDto {
@@ -2230,6 +2652,86 @@ export class CountryUpdateDto implements ICountryUpdateDto {
 export interface ICountryUpdateDto {
     id?: string;
     name?: string | undefined;
+}
+
+export class Doctor implements IDoctor {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    phone?: string | undefined;
+    photo?: string | undefined;
+    description?: string | undefined;
+    fullDescription?: string | undefined;
+    birthday?: Date;
+
+    constructor(data?: IDoctor) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.isDeleted = _data["isDeleted"];
+            this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
+            this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
+            this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
+            this.firstName = _data["firstName"];
+            this.lastName = _data["lastName"];
+            this.phone = _data["phone"];
+            this.photo = _data["photo"];
+            this.description = _data["description"];
+            this.fullDescription = _data["fullDescription"];
+            this.birthday = _data["birthday"] ? new Date(_data["birthday"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): Doctor {
+        data = typeof data === 'object' ? data : {};
+        let result = new Doctor();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["isDeleted"] = this.isDeleted;
+        data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
+        data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
+        data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
+        data["firstName"] = this.firstName;
+        data["lastName"] = this.lastName;
+        data["phone"] = this.phone;
+        data["photo"] = this.photo;
+        data["description"] = this.description;
+        data["fullDescription"] = this.fullDescription;
+        data["birthday"] = this.birthday ? formatDate(this.birthday) : <any>undefined;
+        return data;
+    }
+}
+
+export interface IDoctor {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    firstName?: string | undefined;
+    lastName?: string | undefined;
+    phone?: string | undefined;
+    photo?: string | undefined;
+    description?: string | undefined;
+    fullDescription?: string | undefined;
+    birthday?: Date;
 }
 
 export class DoctorCreateDto implements IDoctorCreateDto {
@@ -2578,10 +3080,10 @@ export class HospitalDoctorDto implements IHospitalDoctorDto {
     creationTimestamp?: Date;
     modifiedTimestamp?: Date;
     deletedTimestamp?: Date | undefined;
-    hospitalId?: string;
-    doctorId?: string;
-    specialisationId?: string;
     price?: number | undefined;
+    hospital?: HospitalDto;
+    doctor?: DoctorDto;
+    specialisation?: SpecialisationDto;
 
     constructor(data?: IHospitalDoctorDto) {
         if (data) {
@@ -2599,10 +3101,10 @@ export class HospitalDoctorDto implements IHospitalDoctorDto {
             this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
             this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
             this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
-            this.hospitalId = _data["hospitalId"];
-            this.doctorId = _data["doctorId"];
-            this.specialisationId = _data["specialisationId"];
             this.price = _data["price"];
+            this.hospital = _data["hospital"] ? HospitalDto.fromJS(_data["hospital"]) : <any>undefined;
+            this.doctor = _data["doctor"] ? DoctorDto.fromJS(_data["doctor"]) : <any>undefined;
+            this.specialisation = _data["specialisation"] ? SpecialisationDto.fromJS(_data["specialisation"]) : <any>undefined;
         }
     }
 
@@ -2620,10 +3122,10 @@ export class HospitalDoctorDto implements IHospitalDoctorDto {
         data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
         data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
         data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
-        data["hospitalId"] = this.hospitalId;
-        data["doctorId"] = this.doctorId;
-        data["specialisationId"] = this.specialisationId;
         data["price"] = this.price;
+        data["hospital"] = this.hospital ? this.hospital.toJSON() : <any>undefined;
+        data["doctor"] = this.doctor ? this.doctor.toJSON() : <any>undefined;
+        data["specialisation"] = this.specialisation ? this.specialisation.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -2634,10 +3136,10 @@ export interface IHospitalDoctorDto {
     creationTimestamp?: Date;
     modifiedTimestamp?: Date;
     deletedTimestamp?: Date | undefined;
-    hospitalId?: string;
-    doctorId?: string;
-    specialisationId?: string;
     price?: number | undefined;
+    hospital?: HospitalDto;
+    doctor?: DoctorDto;
+    specialisation?: SpecialisationDto;
 }
 
 export class HospitalDoctorQueryDto implements IHospitalDoctorQueryDto {
@@ -2738,7 +3240,7 @@ export class HospitalDto implements IHospitalDto {
     address?: string | undefined;
     phone?: string | undefined;
     photo?: string | undefined;
-    cityId?: string;
+    city?: City;
 
     constructor(data?: IHospitalDto) {
         if (data) {
@@ -2760,7 +3262,7 @@ export class HospitalDto implements IHospitalDto {
             this.address = _data["address"];
             this.phone = _data["phone"];
             this.photo = _data["photo"];
-            this.cityId = _data["cityId"];
+            this.city = _data["city"] ? City.fromJS(_data["city"]) : <any>undefined;
         }
     }
 
@@ -2782,7 +3284,7 @@ export class HospitalDto implements IHospitalDto {
         data["address"] = this.address;
         data["phone"] = this.phone;
         data["photo"] = this.photo;
-        data["cityId"] = this.cityId;
+        data["city"] = this.city ? this.city.toJSON() : <any>undefined;
         return data;
     }
 }
@@ -2797,7 +3299,7 @@ export interface IHospitalDto {
     address?: string | undefined;
     phone?: string | undefined;
     photo?: string | undefined;
-    cityId?: string;
+    city?: City;
 }
 
 export class HospitalQueryDto implements IHospitalQueryDto {
@@ -2892,6 +3394,62 @@ export interface IHospitalUpdateDto {
     cityId?: string;
 }
 
+export class Specialisation implements ISpecialisation {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    name?: string | undefined;
+
+    constructor(data?: ISpecialisation) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.isDeleted = _data["isDeleted"];
+            this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
+            this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
+            this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): Specialisation {
+        data = typeof data === 'object' ? data : {};
+        let result = new Specialisation();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["isDeleted"] = this.isDeleted;
+        data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
+        data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
+        data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
+        data["name"] = this.name;
+        return data;
+    }
+}
+
+export interface ISpecialisation {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    name?: string | undefined;
+}
+
 export class SpecialisationCreateDto implements ISpecialisationCreateDto {
     name?: string | undefined;
 
@@ -2926,6 +3484,198 @@ export class SpecialisationCreateDto implements ISpecialisationCreateDto {
 
 export interface ISpecialisationCreateDto {
     name?: string | undefined;
+}
+
+export class SpecialisationDoctorCreateDto implements ISpecialisationDoctorCreateDto {
+    specialisationId?: string;
+    doctorId?: string;
+    experience?: Date | undefined;
+
+    constructor(data?: ISpecialisationDoctorCreateDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.specialisationId = _data["specialisationId"];
+            this.doctorId = _data["doctorId"];
+            this.experience = _data["experience"] ? new Date(_data["experience"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): SpecialisationDoctorCreateDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SpecialisationDoctorCreateDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["specialisationId"] = this.specialisationId;
+        data["doctorId"] = this.doctorId;
+        data["experience"] = this.experience ? formatDate(this.experience) : <any>undefined;
+        return data;
+    }
+}
+
+export interface ISpecialisationDoctorCreateDto {
+    specialisationId?: string;
+    doctorId?: string;
+    experience?: Date | undefined;
+}
+
+export class SpecialisationDoctorDto implements ISpecialisationDoctorDto {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    doctor?: Doctor;
+    specialisation?: Specialisation;
+    experience?: Date | undefined;
+
+    constructor(data?: ISpecialisationDoctorDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.isDeleted = _data["isDeleted"];
+            this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
+            this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
+            this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
+            this.doctor = _data["doctor"] ? Doctor.fromJS(_data["doctor"]) : <any>undefined;
+            this.specialisation = _data["specialisation"] ? Specialisation.fromJS(_data["specialisation"]) : <any>undefined;
+            this.experience = _data["experience"] ? new Date(_data["experience"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): SpecialisationDoctorDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SpecialisationDoctorDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["isDeleted"] = this.isDeleted;
+        data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
+        data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
+        data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
+        data["doctor"] = this.doctor ? this.doctor.toJSON() : <any>undefined;
+        data["specialisation"] = this.specialisation ? this.specialisation.toJSON() : <any>undefined;
+        data["experience"] = this.experience ? formatDate(this.experience) : <any>undefined;
+        return data;
+    }
+}
+
+export interface ISpecialisationDoctorDto {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    doctor?: Doctor;
+    specialisation?: Specialisation;
+    experience?: Date | undefined;
+}
+
+export class SpecialisationDoctorQueryDto implements ISpecialisationDoctorQueryDto {
+    experience?: Date;
+
+    constructor(data?: ISpecialisationDoctorQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.experience = _data["experience"] ? new Date(_data["experience"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): SpecialisationDoctorQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SpecialisationDoctorQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["experience"] = this.experience ? formatDate(this.experience) : <any>undefined;
+        return data;
+    }
+}
+
+export interface ISpecialisationDoctorQueryDto {
+    experience?: Date;
+}
+
+export class SpecialisationDoctorUpdateDto implements ISpecialisationDoctorUpdateDto {
+    id?: string;
+    specialisationId?: string;
+    doctorId?: string;
+    experience?: Date | undefined;
+
+    constructor(data?: ISpecialisationDoctorUpdateDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.specialisationId = _data["specialisationId"];
+            this.doctorId = _data["doctorId"];
+            this.experience = _data["experience"] ? new Date(_data["experience"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): SpecialisationDoctorUpdateDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new SpecialisationDoctorUpdateDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["specialisationId"] = this.specialisationId;
+        data["doctorId"] = this.doctorId;
+        data["experience"] = this.experience ? formatDate(this.experience) : <any>undefined;
+        return data;
+    }
+}
+
+export interface ISpecialisationDoctorUpdateDto {
+    id?: string;
+    specialisationId?: string;
+    doctorId?: string;
+    experience?: Date | undefined;
 }
 
 export class SpecialisationDto implements ISpecialisationDto {

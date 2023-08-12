@@ -38,7 +38,7 @@ export class SpecialisationsAdminPageComponent implements OnInit {
 
   @ViewChild(MatTable) table!: MatTable<SpecialisationDto>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchSpecialisations();

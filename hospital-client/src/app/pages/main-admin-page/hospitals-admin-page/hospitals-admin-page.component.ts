@@ -38,12 +38,12 @@ export class HospitalsAdminPageComponent implements OnInit {
     nameof<HospitalDto>('name'),
     nameof<HospitalDto>('address'),
     nameof<HospitalDto>('photo'),
-    nameof<HospitalDto>('cityId'),
+    nameof<HospitalDto>('city'),
   ];
 
   @ViewChild(MatTable) table!: MatTable<HospitalDto>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchHospitals();
