@@ -75,7 +75,7 @@ namespace Business.DataSeedService
 
         public async Task DataSeedAsync()
         {
-            //await repository.SeedData(new List<SpecialisationDoctor> { Specialisation_Doctor0, Specialisation_Doctor1, Specialisation_Doctor2, Specialisation_Doctor3, Specialisation_Doctor4 });
+            await repository.CreateOrUpdateRangeAsync(new List<SpecialisationDoctor> { Specialisation_Doctor0, Specialisation_Doctor1, Specialisation_Doctor2, Specialisation_Doctor3, Specialisation_Doctor4 });
         }
     }
 }

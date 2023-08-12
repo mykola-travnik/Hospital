@@ -44,6 +44,29 @@ namespace Data
             return entity;
         }
 
+        public async Task<List<TEntity>> CreateOrUpdateRangeAsync(List<TEntity> entities)
+        {
+            var dataTime = DateTime.Now.ToUniversalTime();
+
+            entities.ForEach(async entity =>
+            {
+                var existEntity = _context.Set<TEntity>().AsNoTracking().FirstOrDefault(item => item.Id == entity.Id);
+
+                if (existEntity != default)
+                {
+                    _context.Set<TEntity>().Update(entity);
+                }
+                else
+                {
+                    await _context.Set<TEntity>().AddAsync(entity);
+                }
+            });
+
+            await _context.SaveChangesAsync();
+
+            return entities;
+        }
+
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             var entityExsist = GetQueryable().AsNoTracking().Any(updateEntity => updateEntity.Id == entity.Id);

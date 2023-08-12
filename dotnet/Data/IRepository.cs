@@ -10,5 +10,6 @@ namespace Data
         public Task<TEntity> CreateAsync(TEntity item);
         public Task<TEntity> UpdateAsync(TEntity item);
         public Task<bool> DeleteAsync(Guid id);
+        public Task<List<TEntity>> CreateOrUpdateRangeAsync(List<TEntity> entities);
     }
 }

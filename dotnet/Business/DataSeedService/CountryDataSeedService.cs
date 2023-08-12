@@ -63,7 +63,7 @@ namespace Business.DataSeedService
 
         public async Task DataSeedAsync()
         {
-            //await repository.SeedData(new List<Country> { Country0, Country1, Country2, Country3, Country4 });
+            await repository.CreateOrUpdateRangeAsync(new List<Country> { Country0, Country1, Country2, Country3, Country4 });
         }
     }
 }

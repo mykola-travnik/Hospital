@@ -86,7 +86,7 @@ namespace Business.DataSeedService
 
         public async Task DataSeedAsync()
         {
-            //await repository.SeedData(new List<Hospital> { Hospital0, Hospital1, Hospital2, Hospital3, Hospital4 });
+            await repository.CreateOrUpdateRangeAsync(new List<Hospital> { Hospital0, Hospital1, Hospital2, Hospital3, Hospital4 });
         }
     }
 }
