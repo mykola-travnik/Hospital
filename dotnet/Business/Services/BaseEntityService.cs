@@ -1,7 +1,6 @@
 ﻿
 using AutoMapper;
 using Data;
-using Data.QueryDto;
 using Domain;
 
 namespace Business.Services

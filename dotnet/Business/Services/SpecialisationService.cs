@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
-using Data.QueryDto;
+using Business.CreateDto;
+using Business.Dto;
+using Business.QueryDto;
+using Business.UpdateDto;
 using Data.Repositories;
+using Domain.Models;
 
 namespace Business.Services
 {

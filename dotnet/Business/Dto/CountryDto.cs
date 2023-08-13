@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿namespace Business.Dto;
 
-public class CountryDto : BaseDto
+public record CountryDto : BaseDto
 { 
     public string Name { get; set; }
 }

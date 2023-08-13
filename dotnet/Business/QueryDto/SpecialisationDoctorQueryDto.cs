@@ -1,8 +1,6 @@
-﻿using Domain;
-
-namespace Data.QueryDto
+﻿namespace Business.QueryDto
 {
-    public class SpecialisationDoctorQueryDto : BaseQueryDto
+    public record SpecialisationDoctorQueryDto : BaseQueryDto
     {
         public DateOnly Experience { get; set; }
     }

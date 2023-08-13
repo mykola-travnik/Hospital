@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic;
 using System.Data;
 using System.Diagnostics;
+using Domain.Models;
 
 namespace Business.DataSeedService
 {

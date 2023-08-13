@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿namespace Business.Dto;
 
-public class HospitalDoctorDto : BaseDto
+public record HospitalDoctorDto : BaseDto
 {
     public double? Price { get; set; }
 

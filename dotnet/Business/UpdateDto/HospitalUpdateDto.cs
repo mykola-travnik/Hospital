@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿namespace Business.UpdateDto;
 
-public class HospitalUpdateDto : BaseUpdateDto
+public record HospitalUpdateDto : BaseUpdateDto
 {
     public string Name { get; set; }
     public string? Address { get; set; }

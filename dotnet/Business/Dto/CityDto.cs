@@ -1,9 +1,9 @@
-﻿using Domain;
+﻿using Domain.Models;
 
-public class CityDto : BaseDto
+namespace Business.Dto;
+
+public record CityDto : BaseDto
 {
     public string Name { get; set; }
     public Country Country { get; set; }
 }
-
-

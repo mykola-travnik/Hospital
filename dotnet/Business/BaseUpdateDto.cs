@@ -1,6 +1,6 @@
-﻿namespace Domain
+﻿namespace Business
 {
-    public class BaseUpdateDto 
+    public record BaseUpdateDto 
     {
         public Guid Id { get; set; }
     }

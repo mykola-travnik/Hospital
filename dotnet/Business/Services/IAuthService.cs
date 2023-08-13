@@ -1,4 +1,6 @@
-﻿namespace Business.Services
+﻿using Business.Dto;
+
+namespace Business.Services
 {
     public interface IAuthService
     {

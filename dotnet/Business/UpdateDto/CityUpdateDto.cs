@@ -1,9 +1,7 @@
-﻿using Domain;
+﻿namespace Business.UpdateDto;
 
-public class CityUpdateDto : BaseUpdateDto
+public record CityUpdateDto : BaseUpdateDto
 {
     public string Name { get; set; }
     public Guid CountryId { get; set; }
 }
-
-

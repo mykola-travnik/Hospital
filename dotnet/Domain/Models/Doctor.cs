@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿namespace Domain.Models;
 
 public class Doctor : BaseEntity
 {
@@ -10,5 +10,3 @@ public class Doctor : BaseEntity
     public string? FullDescription { get; set; }
     public DateOnly Birthday { get; set; }
 }
-
-

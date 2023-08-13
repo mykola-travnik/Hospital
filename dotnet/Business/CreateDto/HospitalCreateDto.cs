@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿namespace Business.CreateDto;
 
-public class HospitalCreateDto : BaseCreateDto
+public record HospitalCreateDto : BaseCreateDto
 {
     public string Name { get; set; }
     public string? Address { get; set; }

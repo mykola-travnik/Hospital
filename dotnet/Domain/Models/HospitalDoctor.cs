@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿namespace Domain.Models;
 
 public class HospitalDoctor : BaseEntity
 {
@@ -10,5 +10,3 @@ public class HospitalDoctor : BaseEntity
     public Doctor Doctor { get; set; }
     public Specialisation Specialisation { get; set; }
 }
-
-

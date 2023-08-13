@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿namespace Domain.Models;
 
 public class City: BaseEntity
 {
@@ -6,5 +6,3 @@ public class City: BaseEntity
     public Guid CountryId { get; set; }
     public Country Country { get; set; }
 }
-
-

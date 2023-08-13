@@ -1,9 +1,7 @@
-﻿using Domain;
+﻿namespace Business.CreateDto;
 
-public class CityCreateDto : BaseCreateDto
+public record CityCreateDto : BaseCreateDto
 {
     public string Name { get; set; }
     public Guid CountryId { get; set; }
 }
-
-

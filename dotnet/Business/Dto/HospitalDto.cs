@@ -1,6 +1,8 @@
-﻿using Domain;
+﻿using Domain.Models;
 
-public class HospitalDto : BaseDto
+namespace Business.Dto;
+
+public record HospitalDto : BaseDto
 {
     public string Name { get; set; }
     public string? Address { get; set; }

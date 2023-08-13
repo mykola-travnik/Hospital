@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Business
 {
-    public class BaseCreateDto {}
+    public record BaseCreateDto {}
 }

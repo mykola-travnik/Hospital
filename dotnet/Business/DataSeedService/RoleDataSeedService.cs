@@ -1,4 +1,5 @@
 ﻿using Data.Repositories;
+using Domain.Models;
 
 namespace Business.DataSeedService
 {

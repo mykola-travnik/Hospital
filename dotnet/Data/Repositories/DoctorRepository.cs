@@ -1,4 +1,5 @@
-﻿using Infrastructure.Contexts;
+﻿using Domain.Models;
+using Infrastructure.Contexts;
 
 namespace Data.Repositories
 {

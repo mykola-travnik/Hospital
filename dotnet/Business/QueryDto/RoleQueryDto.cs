@@ -1,9 +1,7 @@
-﻿using Domain;
+﻿namespace Business.QueryDto;
 
-public class RoleQueryDto : BaseQueryDto
+public record RoleQueryDto : BaseQueryDto
 {
     public string Name { get; set; }
     public string Description { get; set; }
 }
-
-

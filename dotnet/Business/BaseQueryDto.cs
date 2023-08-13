@@ -1,6 +1,6 @@
-﻿namespace Domain
+﻿namespace Business
 {
-    public class BaseQueryDto 
+    public record BaseQueryDto 
     {
     }
 }

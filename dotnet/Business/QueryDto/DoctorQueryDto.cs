@@ -1,8 +1,6 @@
-﻿using Domain;
-
-namespace Data.QueryDto
+﻿namespace Business.QueryDto
 {
-    public class DoctorQueryDto : BaseQueryDto
+    public record DoctorQueryDto : BaseQueryDto
     {
         public string FullName { get; set; }
     }

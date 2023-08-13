@@ -1,6 +1,7 @@
 ﻿using Data.Repositories;
 using Microsoft.VisualBasic;
 using System.Data;
+using Domain.Models;
 
 namespace Business.DataSeedService
 {

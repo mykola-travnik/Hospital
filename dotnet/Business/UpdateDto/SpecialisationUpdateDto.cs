@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿namespace Business.UpdateDto;
 
-public class SpecialisationUpdateDto : BaseUpdateDto
+public record SpecialisationUpdateDto : BaseUpdateDto
 {
     public string Name { get; set; }
 }

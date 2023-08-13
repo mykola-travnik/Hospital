@@ -1,6 +1,6 @@
-﻿namespace Domain
+﻿namespace Business
 {
-    public class BaseDto
+    public record BaseDto
     {
         public Guid Id { get; set; }
         public bool IsDeleted { get; set; }

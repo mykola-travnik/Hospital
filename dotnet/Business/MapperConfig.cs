@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using Business.CreateDto;
+using Business.Dto;
+using Business.UpdateDto;
+using Domain.Models;
 
-namespace Data
+namespace Business
 {
     public class MapperConfig : Profile
     {

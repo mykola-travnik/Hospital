@@ -1,8 +1,6 @@
-﻿using Domain;
+﻿namespace Business.QueryDto;
 
-public class HospitalDoctorQueryDto : BaseQueryDto
+public record HospitalDoctorQueryDto : BaseQueryDto
 {
     public double Price { get; set; }
 }
-
-

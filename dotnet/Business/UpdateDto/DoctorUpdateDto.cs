@@ -1,6 +1,6 @@
-﻿using Domain;
+﻿namespace Business.UpdateDto;
 
-public class DoctorUpdateDto : BaseUpdateDto
+public record DoctorUpdateDto : BaseUpdateDto
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -11,5 +11,3 @@ public class DoctorUpdateDto : BaseUpdateDto
     public DateOnly Birthday { get; set; }
 
 }
-
-

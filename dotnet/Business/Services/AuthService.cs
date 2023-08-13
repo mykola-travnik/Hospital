@@ -4,6 +4,8 @@ using Data.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Business.Dto;
+using Domain.Models;
 
 namespace Business.Services
 {

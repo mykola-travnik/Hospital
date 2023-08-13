@@ -1,9 +1,7 @@
-﻿using Domain;
+﻿namespace Business.CreateDto;
 
-public class RoleCreateDto : BaseCreateDto
+public record RoleCreateDto : BaseCreateDto
 {
     public string Name { get; set; }
     public string Description { get; set; }
 }
-
-

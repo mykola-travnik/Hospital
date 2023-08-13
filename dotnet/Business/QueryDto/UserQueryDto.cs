@@ -1,10 +1,8 @@
-﻿using Domain;
+﻿namespace Business.QueryDto;
 
-public class UserQueryDto : BaseQueryDto
+public record UserQueryDto : BaseQueryDto
 {
     public string Name { get; set; }
     public string Password { get; set; }
     public List<RoleQueryDto> Roles { get; set; }
 }
-
-

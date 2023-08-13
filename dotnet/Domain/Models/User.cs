@@ -1,4 +1,4 @@
-﻿using Domain;
+﻿namespace Domain.Models;
 
 public class User: BaseEntity
 {
@@ -6,5 +6,3 @@ public class User: BaseEntity
     public string Password { get; set; }
     public List<Role> Roles { get; set; }
 }
-
-
