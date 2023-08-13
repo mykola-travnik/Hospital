@@ -13,10 +13,12 @@ public class AuthService : IAuthService
 {
     private readonly IMapper mapper;
     private readonly IUserRepository userRepository;
+    private readonly IRoleRepository roleRepository;
 
-    public AuthService(IUserRepository userRepository, IMapper mapper)
+    public AuthService(IUserRepository userRepository, IRoleRepository roleRepository, IMapper mapper)
     {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
         this.mapper = mapper;
     }
 
@@ -33,10 +35,17 @@ public class AuthService : IAuthService
 
     public async Task<UserDto> SignIn(string username, string password)
     {
+        var userAlreadyExist = userRepository.GetQueryable().Any(user => user.Name.Equals(username));
+
+        if (userAlreadyExist)
+            throw new Exception("User already exist");
+
+        var userRole = roleRepository.Get(RoleDataSeedService.UserRole.Id);
+
         var newUser = new User
         {
             Name = username,
-            Roles = new List<Role> { RoleDataSeedService.UserRole },
+            Roles = new List<Role> { userRole },
             Password = HashHelpers.GetHashString(password)
         };
 

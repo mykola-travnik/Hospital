@@ -54,8 +54,10 @@ public abstract class AbstractRepository<TEntity> : IRepository<TEntity>
 
             if (existEntity != default)
             {
-                _context.Entry(existEntity).CurrentValues.SetValues(entity);
-                _context.Set<TEntity>().Update(existEntity);
+                _context.Entry(existEntity).State = EntityState.Detached;
+
+                _context.Set<TEntity>().Attach(entity);
+                _context.Entry(entity).State = EntityState.Modified;
             }
             else
             {
