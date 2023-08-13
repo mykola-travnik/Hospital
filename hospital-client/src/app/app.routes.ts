@@ -54,6 +54,13 @@ export const routes: Route[] = [
             './pages/main-admin-page/hospitalDoctors-admin-page/hospitalDoctors-admin-page.component'
           ).then((c) => c.HospitalDoctorsAdminPageComponent),
       },
+      {
+        path: 'sign-in',
+        loadComponent: () =>
+          import(
+            './pages/sign-in/sign-in.component'
+          ).then((c) => c.SignInComponent),
+      },
     ],
   },
 ];

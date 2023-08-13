@@ -1,0 +1,27 @@
+<div class="flex items-center justify-center pt-3">
+  <div class=" flex w-auto flex-row">
+    <div class="flex text-center">
+      <h1>Авторизация</h1>
+    </div>
+    <div class="flex text-center">
+      <mat-form-field>
+        <input matInput type="text" placeholder="Логин" [(ngModel)]="user.login" />
+      </mat-form-field>
+    </div>
+    <div class="flex text-center">
+      <mat-form-field>
+        <mat-label>Пароль</mat-label>
+        <input [(ngModel)]="user.password" matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Скрыть пароль'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="flex text-center">
+      <button mat-raised-button color="primary" (click)="login()">
+        Войти
+      </button>
+    </div>
+  </div>
+</div>
