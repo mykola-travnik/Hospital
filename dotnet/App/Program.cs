@@ -53,13 +53,14 @@ builder.Services.AddCors(options =>
 });
 
 // Add repository
-builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<ICityRepository, CityRepository>();
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
 builder.Services.AddScoped<ISpecialisationRepository, SpecialisationRepository>();
 builder.Services.AddScoped<ISpecialisationDoctorRepository, SpecialisationDoctorRepository>();
 builder.Services.AddScoped<IHospitalDoctorRepository, HospitalDoctorRepository>();
+builder.Services.AddScoped<IRecordToDoctorRepository, RecordToDoctorRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
@@ -71,6 +72,7 @@ builder.Services.AddScoped<IHospitalDoctorService, HospitalDoctorService>();
 builder.Services.AddScoped<IHospitalService, HospitalService>();
 builder.Services.AddScoped<ISpecialisationDoctorService, SpecialisationDoctorService>();
 builder.Services.AddScoped<ISpecialisationService, SpecialisationService>();
+builder.Services.AddScoped<IRecordToDoctorService, RecordToDoctorService>();
 builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();

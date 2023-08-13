@@ -77,26 +77,4 @@ public abstract class
     {
         return repository.GetQueryable();
     }
-
-
-    ///// <summary>
-    ///// Для сидинга данных
-    ///// </summary>
-    ///// <param name="entity">Сущность для записи</param>
-    //public async Task SeedData(List<TEntity> entities)
-    //{
-    //    entities.ForEach(async entity =>
-    //    {
-    //        if (entity == null) { throw new Exception("Not Found"); }
-
-    //        var updateEntity = GetQueryable().AsNoTracking().FirstOrDefault(updateEntity => updateEntity.Id == entity.Id);
-
-    //        if (updateEntity == default)
-    //            await _context.Set<TEntity>().AddAsync(entity);
-    //        else
-    //            _context.Set<TEntity>().Update(entity);
-    //    });
-
-    //    await _context.SaveChangesAsync();
-    //}
 }

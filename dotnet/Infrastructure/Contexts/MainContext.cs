@@ -23,6 +23,8 @@ public class MainContext : DbContext
 
     public DbSet<Role> Roles { get; set; }
 
+    public DbSet<RecordToDoctor> RecordsToDoctor { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql("Host=localhost;Port=5400;Database=project;Username=postgres;Password=docker");
@@ -42,5 +44,8 @@ public class MainContext : DbContext
         modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
 
         modelBuilder.Entity<User>().Navigation(entity => entity.Roles).AutoInclude();
+
+        modelBuilder.Entity<RecordToDoctor>().Navigation(entity => entity.HospitalDoctor).AutoInclude();
+        modelBuilder.Entity<RecordToDoctor>().Navigation(entity => entity.User).AutoInclude();
     }
 }

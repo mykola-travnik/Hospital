@@ -17,6 +17,7 @@ public class MapperConfig : Profile
         CreateMap<Specialisation, SpecialisationDto>().ReverseMap();
         CreateMap<HospitalDoctor, HospitalDoctorDto>().ReverseMap();
         CreateMap<SpecialisationDoctor, SpecialisationDoctorDto>().ReverseMap();
+        CreateMap<RecordToDoctor, RecordToDoctorDto>().ReverseMap();
         CreateMap<Role, RoleDto>().ReverseMap();
         CreateMap<User, UserDto>().ReverseMap();
 
@@ -27,6 +28,7 @@ public class MapperConfig : Profile
         CreateMap<SpecialisationCreateDto, Specialisation>();
         CreateMap<HospitalDoctorCreateDto, HospitalDoctor>();
         CreateMap<SpecialisationDoctorCreateDto, SpecialisationDoctor>();
+        CreateMap<RecordToDoctorCreateDto, RecordToDoctor>();
         CreateMap<RoleCreateDto, Role>();
         CreateMap<UserCreateDto, User>().ForMember(scr => scr.Roles, options => options.Ignore());
 
@@ -37,6 +39,7 @@ public class MapperConfig : Profile
         CreateMap<SpecialisationUpdateDto, Specialisation>();
         CreateMap<HospitalDoctorUpdateDto, HospitalDoctor>();
         CreateMap<SpecialisationDoctorUpdateDto, SpecialisationDoctor>();
+        CreateMap<RecordToDoctorUpdateDto, RecordToDoctor>();
         CreateMap<RoleUpdateDto, Role>();
         CreateMap<UserUpdateDto, User>().ForMember(scr => scr.Roles, options => options.Ignore());
         ;
