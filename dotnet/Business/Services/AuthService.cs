@@ -55,13 +55,13 @@ public class AuthService : IAuthService
 
     private string GenerateJWTToken(User user)
     {
-        var claims = new List<Claim> { new("username", user.Name) };
+        var claims = new List<Claim> { new(AuthOptions.USERNAME_CLAIM, user.Name), new(AuthOptions.USER_ROLES_CLAIM, string.Join(',', user.Roles.Select(role => role.Name))) };
         // создаем JWT-токен
         var jwt = new JwtSecurityToken(
             AuthOptions.ISSUER,
             AuthOptions.AUDIENCE,
             claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+            expires: DateTime.UtcNow.Add(TimeSpan.FromDays(30)),
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(),
                 SecurityAlgorithms.HmacSha256));
 

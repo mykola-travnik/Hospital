@@ -14,7 +14,7 @@ public class UserDataSeedService : IUserDataSeedService
         CreationTimestamp = DateTime.Now.ToUniversalTime(),
         ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
         DeletedTimestamp = null,
-        Roles = new List<Role> { RoleDataSeedService.AdminRole }
+        Roles = new List<Role> { RoleDataSeedService.AdminRole, RoleDataSeedService.UserRole }
     };
 
     public static User User = new()

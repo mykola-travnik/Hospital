@@ -22,7 +22,7 @@ export class AuthService {
     this.storageService.saveUser(user)
   }
 
-  async signin(username: string, email: string, password: string) {
+  async signin(username: string, password: string) {
     const token = await this.authClient.signIn(username, password)
 
     const user: IUser = {

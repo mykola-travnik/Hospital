@@ -3,11 +3,13 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Business;
 
-public class AuthOptions
+public static class AuthOptions
 {
-    public const string ISSUER = "MyAuthServer"; // издатель токена
-    public const string AUDIENCE = "MyAuthClient"; // потребитель токена
-    private const string KEY = "F5qQ4fClnsPdYkhcNiSrzOcSNd90OXhMdwI0LB7qWCkQyUPyV8"; // ключ для шифрации
+    public static string ISSUER = "MyAuthServer"; // издатель токена
+    public static string AUDIENCE = "MyAuthClient"; // потребитель токена
+    public static string KEY = "F5qQ4fClnsPdYkhcNiSrzOcSNd90OXhMdwI0LB7qWCkQyUPyV8"; // ключ для шифрации
+    public static string USERNAME_CLAIM = "username";
+    public static string USER_ROLES_CLAIM = "roles";
 
     public static SymmetricSecurityKey GetSymmetricSecurityKey()
     {

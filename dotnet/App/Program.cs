@@ -1,4 +1,5 @@
-﻿using Business;
+﻿using App.Middleware;
+using Business;
 using Business.DataSeedService;
 using Business.Services;
 using Data.Repositories;
@@ -96,6 +97,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 app.UseCors();
