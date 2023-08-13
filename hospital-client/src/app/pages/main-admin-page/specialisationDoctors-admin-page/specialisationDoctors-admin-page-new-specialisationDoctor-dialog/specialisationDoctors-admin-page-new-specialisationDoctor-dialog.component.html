@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center pt-3">
+  <div class="flex w-auto flex-row">
+    <div class="flex text-center">
+      <h1>Новая цена</h1>
+    </div>
+    <div class="flex text-center">
+      <mat-form-field>
+        <input
+          matInput
+          type="double"
+          placeholder="Цена"
+          [(ngModel)]="data.dto.price"
+        />
+      </mat-form-field>
+    </div>
+    <div class="flex text-center">
+      <button mat-raised-button [mat-dialog-close]="data.dto" color="primary">
+        Добавить цену
+      </button>
+    </div>
+  </div>
+</div>

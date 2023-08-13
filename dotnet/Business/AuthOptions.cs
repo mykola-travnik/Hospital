@@ -7,7 +7,7 @@ public class AuthOptions
 {
     public const string ISSUER = "MyAuthServer"; // издатель токена
     public const string AUDIENCE = "MyAuthClient"; // потребитель токена
-    private const string KEY = "mysupersecret_secretkey!1236546544564454464546545645645"; // ключ для шифрации
+    private const string KEY = "F5qQ4fClnsPdYkhcNiSrzOcSNd90OXhMdwI0LB7qWCkQyUPyV8"; // ключ для шифрации
 
     public static SymmetricSecurityKey GetSymmetricSecurityKey()
     {
