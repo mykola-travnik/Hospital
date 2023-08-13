@@ -1,5 +1,4 @@
-﻿using Business.Dto;
-using Business.Services;
+﻿using Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers;
@@ -20,7 +19,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost(nameof(SignIn))]
-    public async Task<UserDto> SignIn(string username, string password)
+    public async Task<string> SignIn(string username, string password)
     {
         return await authService.SignIn(username, password);
     }

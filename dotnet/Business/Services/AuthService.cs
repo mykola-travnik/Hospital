@@ -1,11 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using AutoMapper;
+﻿using AutoMapper;
 using Business.DataSeedService;
-using Business.Dto;
 using Data.Repositories;
 using Domain.Models;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace Business.Services;
 
@@ -33,7 +32,7 @@ public class AuthService : IAuthService
         return GenerateJWTToken(user);
     }
 
-    public async Task<UserDto> SignIn(string username, string password)
+    public async Task<string> SignIn(string username, string password)
     {
         var userAlreadyExist = userRepository.GetQueryable().Any(user => user.Name.Equals(username));
 
@@ -49,7 +48,9 @@ public class AuthService : IAuthService
             Password = HashHelpers.GetHashString(password)
         };
 
-        return mapper.Map<UserDto>(await userRepository.CreateAsync(newUser));
+        var user = await userRepository.CreateAsync(newUser);
+
+        return GenerateJWTToken(user);
     }
 
     private string GenerateJWTToken(User user)
