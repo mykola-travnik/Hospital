@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthClient, Client } from 'src/client/client';
+import { AuthService } from 'src/_services/auth.service';
 
 
 interface IUserCredentials {
@@ -27,13 +28,15 @@ interface IUserCredentials {
 })
 
 export class SignInComponent {
-  private authClient = new AuthClient('http://localhost:5298');
+
 
   public user: IUserCredentials = this.defaultUserCreds()
   public hide = true;
 
+  constructor(private authService: AuthService) { }
+
   public async login() {
-    const token = await this.authClient.logIn(this.user.login, this.user.password)
+    const token = await this.authService.login(this.user.login, this.user.password)
     console.warn(token);
   }
 

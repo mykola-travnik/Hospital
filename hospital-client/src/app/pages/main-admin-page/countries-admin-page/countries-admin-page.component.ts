@@ -11,6 +11,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { nameof } from 'src/utilites';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CountriesAdminPageNewCountryDialogComponent } from './countries-admin-page-new-country-dialog/countries-admin-page-new-country-dialog.component';
+import { CountriesClient } from 'src/_services/countriesClient.service';
 
 @Component({
   selector: 'app-countries-admin-page',
@@ -28,14 +29,12 @@ import { CountriesAdminPageNewCountryDialogComponent } from './countries-admin-p
   styleUrls: ['./countries-admin-page.component.less'],
 })
 export class CountriesAdminPageComponent implements OnInit {
-  private client = new CountryClient('http://localhost:5298');
-
   public countries: CountryDto[] = []
   public displayedColumns: string[] = [nameof<CountryDto>("name"), 'actions'];
 
   @ViewChild(MatTable) table!: MatTable<CountryDto>;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, private countriesClient: CountriesClient) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchCountries()
@@ -43,7 +42,7 @@ export class CountriesAdminPageComponent implements OnInit {
 
   private async fetchCountries() {
     const query = new CountryQueryDto({ name: "" })
-    this.countries = await this.client.query(query)
+    this.countries = await this.countriesClient.query(query)
   }
 
   public openDialog() {
@@ -58,7 +57,7 @@ export class CountriesAdminPageComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async (request: CountryCreateDto) => {
-      const dto = await this.client.create(request);
+      const dto = await this.countriesClient.create(request);
       this.countries.push(dto)
       this.table.renderRows()
     })
