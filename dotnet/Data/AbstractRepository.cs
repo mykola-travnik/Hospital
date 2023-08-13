@@ -50,11 +50,12 @@ namespace Data
 
             entities.ForEach(async entity =>
             {
-                var existEntity = _context.Set<TEntity>().AsNoTracking().FirstOrDefault(item => item.Id == entity.Id);
+                var existEntity = _context.Set<TEntity>().FirstOrDefault(item => item.Id == entity.Id);
 
                 if (existEntity != default)
                 {
-                    _context.Set<TEntity>().Update(entity);
+                    _context.Entry(existEntity).CurrentValues.SetValues(entity);
+                    _context.Set<TEntity>().Update(existEntity);
                 }
                 else
                 {

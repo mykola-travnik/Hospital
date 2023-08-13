@@ -39,6 +39,8 @@ namespace Infrastructure.Contexts
 
             modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Doctor).AutoInclude();
             modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
+
+            modelBuilder.Entity<User>().Navigation(entity => entity.Roles).AutoInclude();
         }
 
     }
