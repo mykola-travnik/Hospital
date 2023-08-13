@@ -10,7 +10,6 @@ namespace App.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-[AdminAuthorize]
 public class
     CountryController : AbstractController<Country, CountryDto, CountryCreateDto, CountryUpdateDto, CountryQueryDto>
 {

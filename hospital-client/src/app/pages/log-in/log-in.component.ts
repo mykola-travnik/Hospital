@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthClient, Client } from 'src/client/client';
 import { AuthService } from 'src/_services/auth.service';
 
 
@@ -15,7 +14,7 @@ interface IUserCredentials {
 }
 
 @Component({
-  selector: 'app-sign-in',
+  selector: 'app-log-in',
   standalone: true,
   imports: [CommonModule,
     MatInputModule,
@@ -23,11 +22,11 @@ interface IUserCredentials {
     MatFormFieldModule,
     FormsModule,
     MatIconModule],
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.less']
+  templateUrl: './log-in.component.html',
+  styleUrls: ['./log-in.component.less']
 })
 
-export class SignInComponent {
+export class LogInComponent {
 
 
   public user: IUserCredentials = this.defaultUserCreds()
@@ -36,8 +35,7 @@ export class SignInComponent {
   constructor(private authService: AuthService) { }
 
   public async login() {
-    const token = await this.authService.login(this.user.login, this.user.password)
-    console.warn(token);
+    this.authService.login(this.user.login, this.user.password)
   }
 
   private defaultUserCreds(): IUserCredentials {

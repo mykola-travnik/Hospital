@@ -55,11 +55,11 @@ export const routes: Route[] = [
           ).then((c) => c.HospitalDoctorsAdminPageComponent),
       },
       {
-        path: 'sign-in',
+        path: 'log-in',
         loadComponent: () =>
           import(
-            './pages/sign-in/sign-in.component'
-          ).then((c) => c.SignInComponent),
+            './pages/log-in/log-in.component'
+          ).then((c) => c.LogInComponent),
       },
     ],
   },
