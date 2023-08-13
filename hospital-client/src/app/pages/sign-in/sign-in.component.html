@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center pt-3">
   <div class=" flex w-auto flex-row">
     <div class="flex text-center">
-      <h1>Авторизация</h1>
+      <h1>Регистрация</h1>
     </div>
     <div class="flex text-center">
       <mat-form-field>
@@ -19,11 +19,8 @@
       </mat-form-field>
     </div>
     <div class="flex text-center">
-      <p *ngIf="!loginSuccess">Логин или пароль неверные!</p>
-    </div>
-    <div class="flex text-center">
       <button mat-raised-button color="primary" (click)="login()">
-        Войти
+        Создать пользователя
       </button>
     </div>
   </div>

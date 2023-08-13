@@ -1,0 +1,18 @@
+<div class="container d-flex flex-wrap max-w-md">
+  <mat-card *ngFor="let doctor of doctors" class="example-card m-3">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{doctor.doctor!.firstName}} {{doctor.doctor!.lastName}}</mat-card-title>
+      <mat-card-subtitle>{{doctor.specialisation?.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        {{doctor.doctor?.description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="meetWithDoctor()" mat-button>Записаться на приём</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

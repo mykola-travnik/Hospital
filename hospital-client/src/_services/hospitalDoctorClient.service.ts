@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { CountryClient } from 'src/client/client';
+import { HospitalDoctorClient } from 'src/client/client';
 import { AUTH_API } from 'src/utilites';
 import { StorageService } from './storage.service';
 
@@ -9,7 +9,7 @@ const AUTHORIZATION_HEADER = "Authorization"
 @Injectable({
   providedIn: 'root'
 })
-export class CountriesClientService extends CountryClient {
+export class HospitalDoctorClientService extends HospitalDoctorClient {
   constructor(storageService: StorageService) {
     const user = storageService.getUser()
 

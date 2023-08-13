@@ -11,25 +11,38 @@ export class AuthService {
 
   constructor(private storageService: StorageService) { }
 
-  async login(username: string, password: string) {
-    const token = await this.authClient.logIn(username, password)
+  async login(username: string, password: string): Promise<boolean> {
+    try {
+      const token = await this.authClient.logIn(username, password)
 
-    const user: IUser = {
-      name: username,
-      token: token
+      const user: IUser = {
+        name: username,
+        token: token
+      }
+
+      this.storageService.saveUser(user)
+
+      return true;
     }
-
-    this.storageService.saveUser(user)
+    catch {
+      return false;
+    }
   }
 
-  async signin(username: string, password: string) {
-    const token = await this.authClient.signIn(username, password)
+  async signin(username: string, password: string): Promise<boolean> {
+    try {
+      const token = await this.authClient.signIn(username, password)
 
-    const user: IUser = {
-      name: username,
-      token: token
+      const user: IUser = {
+        name: username,
+        token: token
+      }
+
+      this.storageService.saveUser(user)
+      return true;
     }
-
-    this.storageService.saveUser(user)
+    catch {
+      return false;
+    }
   }
 }

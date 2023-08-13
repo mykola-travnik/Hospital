@@ -11,7 +11,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { nameof } from 'src/utilites';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CountriesAdminPageNewCountryDialogComponent } from './countries-admin-page-new-country-dialog/countries-admin-page-new-country-dialog.component';
-import { CountriesClient } from 'src/_services/countriesClient.service';
+import { CountriesClientService } from 'src/_services/countriesClient.service';
 
 @Component({
   selector: 'app-countries-admin-page',
@@ -34,7 +34,7 @@ export class CountriesAdminPageComponent implements OnInit {
 
   @ViewChild(MatTable) table!: MatTable<CountryDto>;
 
-  constructor(public dialog: MatDialog, private countriesClient: CountriesClient) { }
+  constructor(public dialog: MatDialog, private countriesClient: CountriesClientService) { }
 
   async ngOnInit(): Promise<void> {
     this.fetchCountries()

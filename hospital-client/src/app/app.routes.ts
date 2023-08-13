@@ -6,6 +6,13 @@ export const routes: Route[] = [
     path: '',
     children: [
       {
+        path: 'main',
+        loadComponent: () =>
+          import('./pages/main-page/main-page.component').then(
+            (c) => c.MainPageComponent
+          ),
+      },
+      {
         path: 'admin',
         loadComponent: () =>
           import('./pages/main-admin-page/main-admin-page.component').then(
@@ -60,6 +67,13 @@ export const routes: Route[] = [
           import(
             './pages/log-in/log-in.component'
           ).then((c) => c.LogInComponent),
+      },
+      {
+        path: 'sign-in',
+        loadComponent: () =>
+          import(
+            './pages/sign-in/sign-in.component'
+          ).then((c) => c.SignInComponent),
       },
     ],
   },
