@@ -4,7 +4,9 @@ using Business.QueryDto;
 using Business.UpdateDto;
 using Domain.Models;
 
-namespace Business.Services
+namespace Business.Services;
+
+public interface IHospitalDoctorService : IBaseEntityService<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto,
+    HospitalDoctorUpdateDto, HospitalDoctorQueryDto>
 {
-    public interface IHospitalDoctorService: IBaseEntityService<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto, HospitalDoctorUpdateDto, HospitalDoctorQueryDto> { }
 }

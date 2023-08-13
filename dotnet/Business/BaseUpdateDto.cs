@@ -1,7 +1,6 @@
-﻿namespace Business
+﻿namespace Business;
+
+public record BaseUpdateDto
 {
-    public record BaseUpdateDto 
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

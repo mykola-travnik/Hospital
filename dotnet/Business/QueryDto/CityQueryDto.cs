@@ -1,7 +1,6 @@
-﻿namespace Business.QueryDto
+﻿namespace Business.QueryDto;
+
+public record CityQueryDto : BaseQueryDto
 {
-    public record CityQueryDto : BaseQueryDto
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

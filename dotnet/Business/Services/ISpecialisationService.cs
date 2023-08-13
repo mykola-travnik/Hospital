@@ -4,7 +4,9 @@ using Business.QueryDto;
 using Business.UpdateDto;
 using Domain.Models;
 
-namespace Business.Services
+namespace Business.Services;
+
+public interface ISpecialisationService : IBaseEntityService<Specialisation, SpecialisationDto, SpecialisationCreateDto,
+    SpecialisationUpdateDto, SpecialisationQueryDto>
 {
-    public interface ISpecialisationService: IBaseEntityService<Specialisation, SpecialisationDto, SpecialisationCreateDto, SpecialisationUpdateDto, SpecialisationQueryDto> { }
 }

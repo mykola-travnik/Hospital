@@ -1,12 +1,11 @@
 ﻿using Domain.Models;
 using Infrastructure.Contexts;
 
-namespace Data.Repositories
+namespace Data.Repositories;
+
+public class UserRepository : AbstractRepository<User>, IUserRepository
 {
-    public class UserRepository : AbstractRepository<User>, IUserRepository
+    public UserRepository(MainContext context) : base(context)
     {
-        public UserRepository(MainContext context) : base(context)
-        {
-        }
     }
 }

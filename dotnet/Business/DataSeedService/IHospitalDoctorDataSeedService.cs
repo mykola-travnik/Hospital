@@ -1,6 +1,5 @@
-﻿namespace Business.DataSeedService
+﻿namespace Business.DataSeedService;
+
+public interface IHospitalDoctorDataSeedService : IDataSeedService
 {
-    public interface IHospitalDoctorDataSeedService : IDataSeedService
-    {
-    }
 }

@@ -1,6 +1,5 @@
-﻿namespace Business
+﻿namespace Business;
+
+public record BaseQueryDto
 {
-    public record BaseQueryDto 
-    {
-    }
 }

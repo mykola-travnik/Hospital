@@ -1,7 +1,6 @@
-﻿namespace Business.QueryDto
+﻿namespace Business.QueryDto;
+
+public record SpecialisationQueryDto : BaseQueryDto
 {
-    public record SpecialisationQueryDto : BaseQueryDto
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

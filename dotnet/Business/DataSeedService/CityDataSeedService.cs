@@ -1,75 +1,74 @@
 ﻿using Data.Repositories;
 using Domain.Models;
 
-namespace Business.DataSeedService
+namespace Business.DataSeedService;
+
+public class CityDataSeedService : ICityDataSeedService
 {
-    public class CityDataSeedService : ICityDataSeedService
+    public static City City0 = new()
     {
-        private readonly ICityRepository repository;
+        Id = Guid.Parse("D2A6B951-8FD7-46F6-A0ED-15B465F93D08"),
+        Name = "Tiraspol",
+        IsDeleted = false,
+        CreationTimestamp = DateTime.Now.ToUniversalTime(),
+        ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
+        DeletedTimestamp = null,
+        CountryId = CountryDataSeedService.Country0.Id
+    };
 
-        public static City City0 = new City()
-        {
-            Id = Guid.Parse("D2A6B951-8FD7-46F6-A0ED-15B465F93D08"),
-            Name = "Tiraspol",
-            IsDeleted = false,
-            CreationTimestamp = DateTime.Now.ToUniversalTime(),
-            ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
-            DeletedTimestamp = null,
-            CountryId = CountryDataSeedService.Country0.Id,
-        };
+    public static City City1 = new()
+    {
+        Id = Guid.Parse("5A5A3707-46FD-4392-91A7-9FAF30D6C80C"),
+        Name = "Bender",
+        IsDeleted = false,
+        CreationTimestamp = DateTime.Now.ToUniversalTime(),
+        ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
+        DeletedTimestamp = null,
+        CountryId = CountryDataSeedService.Country0.Id
+    };
 
-        public static City City1 = new City()
-        {
-            Id = Guid.Parse("5A5A3707-46FD-4392-91A7-9FAF30D6C80C"),
-            Name = "Bender",
-            IsDeleted = false,
-            CreationTimestamp = DateTime.Now.ToUniversalTime(),
-            ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
-            DeletedTimestamp = null,
-            CountryId = CountryDataSeedService.Country0.Id,
-        };
+    public static City City2 = new()
+    {
+        Id = Guid.Parse("E352CC07-23A0-4ACE-A24E-2FAFB51DCA09"),
+        Name = "Dubossary",
+        IsDeleted = false,
+        CreationTimestamp = DateTime.Now.ToUniversalTime(),
+        ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
+        DeletedTimestamp = null,
+        CountryId = CountryDataSeedService.Country0.Id
+    };
 
-        public static City City2 = new City()
-        {
-            Id = Guid.Parse("E352CC07-23A0-4ACE-A24E-2FAFB51DCA09"),
-            Name = "Dubossary",
-            IsDeleted = false,
-            CreationTimestamp = DateTime.Now.ToUniversalTime(),
-            ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
-            DeletedTimestamp = null,
-            CountryId = CountryDataSeedService.Country0.Id,
-        };
+    public static City City3 = new()
+    {
+        Id = Guid.Parse("F02E19E0-907F-48FC-B072-D1AA0474D63A"),
+        Name = "Grigoriopol",
+        IsDeleted = false,
+        CreationTimestamp = DateTime.Now.ToUniversalTime(),
+        ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
+        DeletedTimestamp = null,
+        CountryId = CountryDataSeedService.Country0.Id
+    };
 
-        public static City City3 = new City()
-        {
-            Id = Guid.Parse("F02E19E0-907F-48FC-B072-D1AA0474D63A"),
-            Name = "Grigoriopol",
-            IsDeleted = false,
-            CreationTimestamp = DateTime.Now.ToUniversalTime(),
-            ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
-            DeletedTimestamp = null,
-            CountryId = CountryDataSeedService.Country0.Id,
-        };
+    public static City City4 = new()
+    {
+        Id = Guid.Parse("BC383983-537F-4648-8E86-DF95C2578981"),
+        Name = "Ribnita",
+        IsDeleted = false,
+        CreationTimestamp = DateTime.Now.ToUniversalTime(),
+        ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
+        DeletedTimestamp = null,
+        CountryId = CountryDataSeedService.Country0.Id
+    };
 
-        public static City City4 = new City()
-        {
-            Id = Guid.Parse("BC383983-537F-4648-8E86-DF95C2578981"),
-            Name = "Ribnita",
-            IsDeleted = false,
-            CreationTimestamp = DateTime.Now.ToUniversalTime(),
-            ModifiedTimestamp = DateTime.Now.ToUniversalTime(),
-            DeletedTimestamp = null,
-            CountryId = CountryDataSeedService.Country0.Id,
-        };
+    private readonly ICityRepository repository;
 
-        public CityDataSeedService(ICityRepository repository)
-        {
-            this.repository = repository;
-        }
+    public CityDataSeedService(ICityRepository repository)
+    {
+        this.repository = repository;
+    }
 
-        public async Task DataSeedAsync()
-        {
-            await repository.CreateOrUpdateRangeAsync(new List<City> { City0, City1, City2, City3, City4 });
-        }
+    public async Task DataSeedAsync()
+    {
+        await repository.CreateOrUpdateRangeAsync(new List<City> { City0, City1, City2, City3, City4 });
     }
 }

@@ -1,68 +1,60 @@
-﻿using AutoMapper;
-using Business.DataSeedService;
-using Data.Repositories;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using AutoMapper;
+using Business.DataSeedService;
 using Business.Dto;
+using Data.Repositories;
 using Domain.Models;
+using Microsoft.IdentityModel.Tokens;
 
-namespace Business.Services
+namespace Business.Services;
+
+public class AuthService : IAuthService
 {
+    private readonly IMapper mapper;
+    private readonly IUserRepository userRepository;
 
-    public class AuthService : IAuthService
+    public AuthService(IUserRepository userRepository, IMapper mapper)
     {
-        private readonly IUserRepository userRepository;
-        private readonly IMapper mapper;
+        this.userRepository = userRepository;
+        this.mapper = mapper;
+    }
 
-        public AuthService(IUserRepository userRepository, IMapper mapper)
+    public string LogIn(string username, string password)
+    {
+        var user = userRepository.GetQueryable().FirstOrDefault(user => user.Name.Equals(username));
+
+        if (user == default) throw new Exception("User not found");
+
+        if (user.Password != HashHelpers.GetHashString(password)) throw new Exception("Password incorrect");
+
+        return GenerateJWTToken(user);
+    }
+
+    public async Task<UserDto> SignIn(string username, string password)
+    {
+        var newUser = new User
         {
-            this.userRepository = userRepository;
-            this.mapper = mapper;
-        }
+            Name = username,
+            Roles = new List<Role> { RoleDataSeedService.UserRole },
+            Password = HashHelpers.GetHashString(password)
+        };
 
-        public string LogIn(string username, string password)
-        {
-            var user = userRepository.GetQueryable().FirstOrDefault(user => user.Name.Equals(username));
+        return mapper.Map<UserDto>(await userRepository.CreateAsync(newUser));
+    }
 
-            if (user == default)
-            {
-                throw new Exception("User not found");
-            }
+    private string GenerateJWTToken(User user)
+    {
+        var claims = new List<Claim> { new("username", user.Name) };
+        // создаем JWT-токен
+        var jwt = new JwtSecurityToken(
+            AuthOptions.ISSUER,
+            AuthOptions.AUDIENCE,
+            claims,
+            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(),
+                SecurityAlgorithms.HmacSha256));
 
-            if (user.Password != HashHelpers.GetHashString(password))
-            {
-                throw new Exception("Password incorrect");
-            }
-
-            return GenerateJWTToken(user);
-        }
-        public async Task<UserDto> SignIn(string username, string password)
-        {
-            var newUser = new User()
-            {
-                Name = username,
-                Roles = new List<Role> { RoleDataSeedService.UserRole },
-                Password = HashHelpers.GetHashString(password)
-            };
-
-            return mapper.Map<UserDto>(await userRepository.CreateAsync(newUser));
-        }
-
-        private string GenerateJWTToken(User user)
-        {
-            var claims = new List<Claim> { new Claim("username", user.Name) };
-            // создаем JWT-токен
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    claims: claims,
-                    expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
-        }
-
-
+        return new JwtSecurityTokenHandler().WriteToken(jwt);
     }
 }

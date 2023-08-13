@@ -3,18 +3,16 @@ using Business.Dto;
 using Business.QueryDto;
 using Business.Services;
 using Business.UpdateDto;
-using Data.Repositories;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Controllers
+namespace App.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class CityController : AbstractController<City, CityDto, CityCreateDto, CityUpdateDto, CityQueryDto>
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class CityController : AbstractController<City, CityDto, CityCreateDto, CityUpdateDto, CityQueryDto>
+    public CityController(ICityService cityService) : base(cityService)
     {
-        public CityController(ICityService cityService) : base(cityService)
-        {
-        }
     }
 }

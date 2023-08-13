@@ -1,11 +1,10 @@
-﻿namespace Domain
+﻿namespace Domain;
+
+public class BaseEntity
 {
-    public class BaseEntity
-    {
-        public Guid Id { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime CreationTimestamp { get; set; }
-        public DateTime ModifiedTimestamp { get; set; }
-        public DateTime? DeletedTimestamp { get; set; }
-    }
+    public Guid Id { get; set; }
+    public bool IsDeleted { get; set; }
+    public DateTime CreationTimestamp { get; set; }
+    public DateTime ModifiedTimestamp { get; set; }
+    public DateTime? DeletedTimestamp { get; set; }
 }

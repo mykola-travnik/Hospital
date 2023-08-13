@@ -1,12 +1,11 @@
 ﻿using Domain.Models;
 using Infrastructure.Contexts;
 
-namespace Data.Repositories
+namespace Data.Repositories;
+
+public class RoleRepository : AbstractRepository<Role>, IRoleRepository
 {
-    public class RoleRepository : AbstractRepository<Role>, IRoleRepository
+    public RoleRepository(MainContext context) : base(context)
     {
-        public RoleRepository(MainContext context) : base(context)
-        {
-        }
     }
 }

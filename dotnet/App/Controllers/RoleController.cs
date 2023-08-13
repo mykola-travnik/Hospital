@@ -3,18 +3,16 @@ using Business.Dto;
 using Business.QueryDto;
 using Business.Services;
 using Business.UpdateDto;
-using Data.Repositories;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Controllers
+namespace App.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class RoleController : AbstractController<Role, RoleDto, RoleCreateDto, RoleUpdateDto, RoleQueryDto>
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class RoleController : AbstractController<Role, RoleDto, RoleCreateDto, RoleUpdateDto, RoleQueryDto>
+    public RoleController(IRoleService RoleService) : base(RoleService)
     {
-        public RoleController(IRoleService RoleService) : base(RoleService)
-        {
-        }
     }
 }

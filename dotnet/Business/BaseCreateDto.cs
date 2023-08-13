@@ -1,4 +1,5 @@
-﻿namespace Business
+﻿namespace Business;
+
+public record BaseCreateDto
 {
-    public record BaseCreateDto {}
 }

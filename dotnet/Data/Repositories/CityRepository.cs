@@ -1,12 +1,11 @@
 ﻿using Domain.Models;
 using Infrastructure.Contexts;
 
-namespace Data.Repositories
+namespace Data.Repositories;
+
+public class CityRepository : AbstractRepository<City>, ICityRepository
 {
-    public class CityRepository : AbstractRepository<City>, ICityRepository
+    public CityRepository(MainContext context) : base(context)
     {
-        public CityRepository(MainContext context) : base(context)
-        {
-        }
     }
 }

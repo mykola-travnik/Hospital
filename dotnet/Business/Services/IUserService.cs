@@ -4,7 +4,8 @@ using Business.QueryDto;
 using Business.UpdateDto;
 using Domain.Models;
 
-namespace Business.Services
+namespace Business.Services;
+
+public interface IUserService : IBaseEntityService<User, UserDto, UserCreateDto, UserUpdateDto, UserQueryDto>
 {
-    public interface IUserService : IBaseEntityService<User, UserDto, UserCreateDto, UserUpdateDto, UserQueryDto> { }
 }

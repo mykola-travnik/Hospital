@@ -1,7 +1,6 @@
-﻿namespace Business.QueryDto
+﻿namespace Business.QueryDto;
+
+public record DoctorQueryDto : BaseQueryDto
 {
-    public record DoctorQueryDto : BaseQueryDto
-    {
-        public string FullName { get; set; }
-    }
+    public string FullName { get; set; }
 }

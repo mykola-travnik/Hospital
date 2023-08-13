@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 
-namespace Data.Repositories
+namespace Data.Repositories;
+
+public interface IHospitalRepository : IRepository<Hospital>
 {
-    public interface IHospitalRepository : IRepository<Hospital> { }
 }

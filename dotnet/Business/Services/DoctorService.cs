@@ -6,18 +6,18 @@ using Business.UpdateDto;
 using Data.Repositories;
 using Domain.Models;
 
-namespace Business.Services
-{
-    public class DoctorService : BaseEntityService<Doctor, DoctorDto, DoctorCreateDto, DoctorUpdateDto, DoctorQueryDto>, IDoctorService
-    {
-        public DoctorService(IDoctorRepository repository, IMapper mapper) : base(repository, mapper)
-        {
-        }
+namespace Business.Services;
 
-        public new List<DoctorDto> QueryAsync(DoctorQueryDto query)
-        {
-            return Find(entity => entity.FirstName.ToLower().StartsWith(query.FullName.ToLower()) ||
-                entity.LastName.ToLower().StartsWith(query.FullName.ToLower()));
-        }
+public class DoctorService : BaseEntityService<Doctor, DoctorDto, DoctorCreateDto, DoctorUpdateDto, DoctorQueryDto>,
+    IDoctorService
+{
+    public DoctorService(IDoctorRepository repository, IMapper mapper) : base(repository, mapper)
+    {
+    }
+
+    public new List<DoctorDto> QueryAsync(DoctorQueryDto query)
+    {
+        return Find(entity => entity.FirstName.ToLower().StartsWith(query.FullName.ToLower()) ||
+                              entity.LastName.ToLower().StartsWith(query.FullName.ToLower()));
     }
 }

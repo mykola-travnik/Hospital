@@ -3,18 +3,17 @@ using Business.Dto;
 using Business.QueryDto;
 using Business.Services;
 using Business.UpdateDto;
-using Data.Repositories;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.Controllers
+namespace App.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class HospitalDoctorController : AbstractController<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto,
+    HospitalDoctorUpdateDto, HospitalDoctorQueryDto>
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class HospitalDoctorController : AbstractController<HospitalDoctor, HospitalDoctorDto, HospitalDoctorCreateDto, HospitalDoctorUpdateDto, HospitalDoctorQueryDto>
+    public HospitalDoctorController(IHospitalDoctorService hospitalDoctorService) : base(hospitalDoctorService)
     {
-        public HospitalDoctorController(IHospitalDoctorService hospitalDoctorService) : base(hospitalDoctorService)
-        {
-        }
     }
 }

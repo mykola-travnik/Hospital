@@ -1,7 +1,6 @@
-﻿namespace Business
+﻿namespace Business;
+
+public interface IDataSeedService
 {
-    public interface IDataSeedService
-    {
-        Task DataSeedAsync();
-    }
+    Task DataSeedAsync();
 }

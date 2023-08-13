@@ -1,14 +1,10 @@
 ﻿using Business;
 using Business.DataSeedService;
 using Business.Services;
-using Data;
 using Data.Repositories;
 using Infrastructure.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,7 +28,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             // установка ключа безопасности
             IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
             // валидация ключа безопасности
-            ValidateIssuerSigningKey = true,
+            ValidateIssuerSigningKey = true
         };
     });
 
@@ -46,7 +42,6 @@ builder.Services.AddAutoMapper(typeof(MapperConfig));
 
 builder.Services.AddCors(options =>
 {
-
     options.AddDefaultPolicy(
         policy =>
         {

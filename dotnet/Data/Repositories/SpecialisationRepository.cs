@@ -1,13 +1,11 @@
 ﻿using Domain.Models;
 using Infrastructure.Contexts;
 
-namespace Data.Repositories
-{
-    public class SpecialisationRepository : AbstractRepository<Specialisation>, ISpecialisationRepository
-    {
-        public SpecialisationRepository(MainContext context) : base(context)
-        {
-        }
+namespace Data.Repositories;
 
+public class SpecialisationRepository : AbstractRepository<Specialisation>, ISpecialisationRepository
+{
+    public SpecialisationRepository(MainContext context) : base(context)
+    {
     }
 }

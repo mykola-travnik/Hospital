@@ -1,12 +1,11 @@
 ﻿using Domain.Models;
 using Infrastructure.Contexts;
 
-namespace Data.Repositories
+namespace Data.Repositories;
+
+public class CountryRepository : AbstractRepository<Country>, ICountryRepository
 {
-    public class CountryRepository : AbstractRepository<Country>, ICountryRepository
+    public CountryRepository(MainContext context) : base(context)
     {
-        public CountryRepository(MainContext context) : base(context)
-        {
-        }
     }
 }

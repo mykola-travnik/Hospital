@@ -1,6 +1,5 @@
-﻿namespace Business.DataSeedService
+﻿namespace Business.DataSeedService;
+
+public interface ICityDataSeedService : IDataSeedService
 {
-    public interface ICityDataSeedService: IDataSeedService
-    {
-    }
 }
