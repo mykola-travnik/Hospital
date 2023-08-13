@@ -1720,6 +1720,308 @@ export class HospitalDoctorClient {
     }
 }
 
+export class RecordToDoctorClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+
+        this.instance = instance ? instance : axios.create();
+
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    get(id: string | undefined, cancelToken?: CancelToken | undefined): Promise<RecordToDoctorDto> {
+        let url_ = this.baseUrl + "/RecordToDoctor/Get?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "GET",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processGet(_response);
+        });
+    }
+
+    protected processGet(response: AxiosResponse): Promise<RecordToDoctorDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = RecordToDoctorDto.fromJS(resultData200);
+            return Promise.resolve<RecordToDoctorDto>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<RecordToDoctorDto>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    create(body: RecordToDoctorCreateDto | undefined, cancelToken?: CancelToken | undefined): Promise<RecordToDoctorDto> {
+        let url_ = this.baseUrl + "/RecordToDoctor/Create";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processCreate(_response);
+        });
+    }
+
+    protected processCreate(response: AxiosResponse): Promise<RecordToDoctorDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = RecordToDoctorDto.fromJS(resultData200);
+            return Promise.resolve<RecordToDoctorDto>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<RecordToDoctorDto>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    update(body: RecordToDoctorUpdateDto | undefined, cancelToken?: CancelToken | undefined): Promise<RecordToDoctorDto> {
+        let url_ = this.baseUrl + "/RecordToDoctor/Update";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "PUT",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processUpdate(_response);
+        });
+    }
+
+    protected processUpdate(response: AxiosResponse): Promise<RecordToDoctorDto> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = RecordToDoctorDto.fromJS(resultData200);
+            return Promise.resolve<RecordToDoctorDto>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<RecordToDoctorDto>(null as any);
+    }
+
+    /**
+     * @param id (optional) 
+     * @return Success
+     */
+    delete(id: string | undefined, cancelToken?: CancelToken | undefined): Promise<boolean> {
+        let url_ = this.baseUrl + "/RecordToDoctor/Delete?";
+        if (id === null)
+            throw new Error("The parameter 'id' cannot be null.");
+        else if (id !== undefined)
+            url_ += "id=" + encodeURIComponent("" + id) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: AxiosRequestConfig = {
+            method: "DELETE",
+            url: url_,
+            headers: {
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processDelete(_response);
+        });
+    }
+
+    protected processDelete(response: AxiosResponse): Promise<boolean> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+                result200 = resultData200 !== undefined ? resultData200 : <any>null;
+    
+            return Promise.resolve<boolean>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<boolean>(null as any);
+    }
+
+    /**
+     * @param body (optional) 
+     * @return Success
+     */
+    query(body: RecordToDoctorQueryDto | undefined, cancelToken?: CancelToken | undefined): Promise<RecordToDoctorDto[]> {
+        let url_ = this.baseUrl + "/RecordToDoctor/Query";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(body);
+
+        let options_: AxiosRequestConfig = {
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "text/plain"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processQuery(_response);
+        });
+    }
+
+    protected processQuery(response: AxiosResponse): Promise<RecordToDoctorDto[]> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(RecordToDoctorDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return Promise.resolve<RecordToDoctorDto[]>(result200);
+
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<RecordToDoctorDto[]>(null as any);
+    }
+}
+
 export class RoleClient {
     private instance: AxiosInstance;
     private baseUrl: string;
@@ -4136,6 +4438,210 @@ export interface IHospitalUpdateDto {
     cityId?: string;
 }
 
+export class RecordToDoctorCreateDto implements IRecordToDoctorCreateDto {
+    hospitalDoctorId?: string;
+    userId?: string;
+    recordTime?: Date;
+
+    constructor(data?: IRecordToDoctorCreateDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.hospitalDoctorId = _data["hospitalDoctorId"];
+            this.userId = _data["userId"];
+            this.recordTime = _data["recordTime"] ? new Date(_data["recordTime"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): RecordToDoctorCreateDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RecordToDoctorCreateDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["hospitalDoctorId"] = this.hospitalDoctorId;
+        data["userId"] = this.userId;
+        data["recordTime"] = this.recordTime ? this.recordTime.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IRecordToDoctorCreateDto {
+    hospitalDoctorId?: string;
+    userId?: string;
+    recordTime?: Date;
+}
+
+export class RecordToDoctorDto implements IRecordToDoctorDto {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    hospitalDoctor?: HospitalDoctorDto;
+    user?: UserDto;
+    recordTime?: Date;
+
+    constructor(data?: IRecordToDoctorDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.isDeleted = _data["isDeleted"];
+            this.creationTimestamp = _data["creationTimestamp"] ? new Date(_data["creationTimestamp"].toString()) : <any>undefined;
+            this.modifiedTimestamp = _data["modifiedTimestamp"] ? new Date(_data["modifiedTimestamp"].toString()) : <any>undefined;
+            this.deletedTimestamp = _data["deletedTimestamp"] ? new Date(_data["deletedTimestamp"].toString()) : <any>undefined;
+            this.hospitalDoctor = _data["hospitalDoctor"] ? HospitalDoctorDto.fromJS(_data["hospitalDoctor"]) : <any>undefined;
+            this.user = _data["user"] ? UserDto.fromJS(_data["user"]) : <any>undefined;
+            this.recordTime = _data["recordTime"] ? new Date(_data["recordTime"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): RecordToDoctorDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RecordToDoctorDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["isDeleted"] = this.isDeleted;
+        data["creationTimestamp"] = this.creationTimestamp ? this.creationTimestamp.toISOString() : <any>undefined;
+        data["modifiedTimestamp"] = this.modifiedTimestamp ? this.modifiedTimestamp.toISOString() : <any>undefined;
+        data["deletedTimestamp"] = this.deletedTimestamp ? this.deletedTimestamp.toISOString() : <any>undefined;
+        data["hospitalDoctor"] = this.hospitalDoctor ? this.hospitalDoctor.toJSON() : <any>undefined;
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        data["recordTime"] = this.recordTime ? this.recordTime.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IRecordToDoctorDto {
+    id?: string;
+    isDeleted?: boolean;
+    creationTimestamp?: Date;
+    modifiedTimestamp?: Date;
+    deletedTimestamp?: Date | undefined;
+    hospitalDoctor?: HospitalDoctorDto;
+    user?: UserDto;
+    recordTime?: Date;
+}
+
+export class RecordToDoctorQueryDto implements IRecordToDoctorQueryDto {
+    user?: UserQueryDto;
+    hospital?: HospitalQueryDto;
+    specialisation?: SpecialisationQueryDto;
+    doctor?: DoctorQueryDto;
+    fromRecordTime?: Date;
+    toRecordTime?: Date;
+
+    constructor(data?: IRecordToDoctorQueryDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.user = _data["user"] ? UserQueryDto.fromJS(_data["user"]) : <any>undefined;
+            this.hospital = _data["hospital"] ? HospitalQueryDto.fromJS(_data["hospital"]) : <any>undefined;
+            this.specialisation = _data["specialisation"] ? SpecialisationQueryDto.fromJS(_data["specialisation"]) : <any>undefined;
+            this.doctor = _data["doctor"] ? DoctorQueryDto.fromJS(_data["doctor"]) : <any>undefined;
+            this.fromRecordTime = _data["fromRecordTime"] ? new Date(_data["fromRecordTime"].toString()) : <any>undefined;
+            this.toRecordTime = _data["toRecordTime"] ? new Date(_data["toRecordTime"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): RecordToDoctorQueryDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RecordToDoctorQueryDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["user"] = this.user ? this.user.toJSON() : <any>undefined;
+        data["hospital"] = this.hospital ? this.hospital.toJSON() : <any>undefined;
+        data["specialisation"] = this.specialisation ? this.specialisation.toJSON() : <any>undefined;
+        data["doctor"] = this.doctor ? this.doctor.toJSON() : <any>undefined;
+        data["fromRecordTime"] = this.fromRecordTime ? this.fromRecordTime.toISOString() : <any>undefined;
+        data["toRecordTime"] = this.toRecordTime ? this.toRecordTime.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IRecordToDoctorQueryDto {
+    user?: UserQueryDto;
+    hospital?: HospitalQueryDto;
+    specialisation?: SpecialisationQueryDto;
+    doctor?: DoctorQueryDto;
+    fromRecordTime?: Date;
+    toRecordTime?: Date;
+}
+
+export class RecordToDoctorUpdateDto implements IRecordToDoctorUpdateDto {
+    id?: string;
+    recordTime?: Date;
+
+    constructor(data?: IRecordToDoctorUpdateDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.recordTime = _data["recordTime"] ? new Date(_data["recordTime"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): RecordToDoctorUpdateDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new RecordToDoctorUpdateDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["recordTime"] = this.recordTime ? this.recordTime.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IRecordToDoctorUpdateDto {
+    id?: string;
+    recordTime?: Date;
+}
+
 export class RoleCreateDto implements IRoleCreateDto {
     name?: string | undefined;
     description?: string | undefined;
@@ -4858,8 +5364,6 @@ export interface IUserDto {
 
 export class UserQueryDto implements IUserQueryDto {
     name?: string | undefined;
-    password?: string | undefined;
-    roles?: RoleQueryDto[] | undefined;
 
     constructor(data?: IUserQueryDto) {
         if (data) {
@@ -4873,12 +5377,6 @@ export class UserQueryDto implements IUserQueryDto {
     init(_data?: any) {
         if (_data) {
             this.name = _data["name"];
-            this.password = _data["password"];
-            if (Array.isArray(_data["roles"])) {
-                this.roles = [] as any;
-                for (let item of _data["roles"])
-                    this.roles!.push(RoleQueryDto.fromJS(item));
-            }
         }
     }
 
@@ -4892,20 +5390,12 @@ export class UserQueryDto implements IUserQueryDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
-        data["password"] = this.password;
-        if (Array.isArray(this.roles)) {
-            data["roles"] = [];
-            for (let item of this.roles)
-                data["roles"].push(item.toJSON());
-        }
         return data;
     }
 }
 
 export interface IUserQueryDto {
     name?: string | undefined;
-    password?: string | undefined;
-    roles?: RoleQueryDto[] | undefined;
 }
 
 export class UserUpdateDto implements IUserUpdateDto {
