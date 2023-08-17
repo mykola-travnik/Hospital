@@ -1,0 +1,22 @@
+<div class="flex items-center justify-center pt-3">
+  <div class="flex w-auto flex-row">
+    <div class="flex text-center">
+      <h1>Запись на прием</h1>
+    </div>
+    <div class="flex text-center">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Название"
+          [(ngModel)]="data.dto.name"
+        />
+      </mat-form-field>
+    </div>
+    <div class="flex text-center">
+      <button mat-raised-button [mat-dialog-close]="data.dto" color="primary">
+        Записаться на приём
+      </button>
+    </div>
+  </div>
+</div>

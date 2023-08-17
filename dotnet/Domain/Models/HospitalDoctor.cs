@@ -6,7 +6,7 @@ public class HospitalDoctor : BaseEntity
     public Guid DoctorId { get; set; }
     public Guid SpecialisationId { get; set; }
     public double? Price { get; set; }
-    public Hospital Hospital { get; set; }
-    public Doctor Doctor { get; set; }
-    public Specialisation Specialisation { get; set; }
+    public virtual Hospital Hospital { get; set; }
+    public virtual Doctor Doctor { get; set; }
+    public virtual Specialisation Specialisation { get; set; }
 }

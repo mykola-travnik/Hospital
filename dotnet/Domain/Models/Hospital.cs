@@ -7,5 +7,5 @@ public class Hospital : BaseEntity
     public string? Phone { get; set; }
     public string? Photo { get; set; }
     public Guid CityId { get; set; }
-    public City City { get; set; }
+    public virtual City City { get; set; }
 }

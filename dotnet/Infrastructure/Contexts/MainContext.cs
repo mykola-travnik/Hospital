@@ -35,25 +35,6 @@ public class MainContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
-    }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<City>().Navigation(entity => entity.Country).AutoInclude();
-
-        modelBuilder.Entity<Hospital>().Navigation(entity => entity.City).AutoInclude();
-
-        modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Doctor).AutoInclude();
-        modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
-        modelBuilder.Entity<HospitalDoctor>().Navigation(entity => entity.Hospital).AutoInclude();
-
-        modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Doctor).AutoInclude();
-        modelBuilder.Entity<SpecialisationDoctor>().Navigation(entity => entity.Specialisation).AutoInclude();
-
-        modelBuilder.Entity<User>().Navigation(entity => entity.Roles).AutoInclude();
-
-        modelBuilder.Entity<RecordToDoctor>().Navigation(entity => entity.HospitalDoctor).AutoInclude();
-        modelBuilder.Entity<RecordToDoctor>().Navigation(entity => entity.User).AutoInclude();
+        optionsBuilder.UseLazyLoadingProxies().UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
     }
 }
