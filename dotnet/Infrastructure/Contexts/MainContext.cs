@@ -1,10 +1,13 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Contexts;
 
 public class MainContext : DbContext
 {
+    private readonly IConfiguration configuration;
+
     public DbSet<Country> Countries { get; set; }
 
     public DbSet<Hospital> Hospital { get; set; }
@@ -25,9 +28,14 @@ public class MainContext : DbContext
 
     public DbSet<RecordToDoctor> RecordsToDoctor { get; set; }
 
+    public MainContext(IConfiguration configuration)
+    {
+        this.configuration = configuration;
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5400;Database=project;Username=postgres;Password=docker");
+        optionsBuilder.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

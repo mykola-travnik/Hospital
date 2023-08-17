@@ -1,4 +1,5 @@
-﻿using App.Middleware;
+﻿using App.Configs;
+using App.Middleware;
 using Business;
 using Business.DataSeedService;
 using Business.Services;
@@ -51,6 +52,8 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
+
+builder.Services.Configure<ConnectionStringsOptions>(builder.Configuration.GetSection(ConnectionStringsOptions.ConnectionStrings));
 
 // Add repository
 builder.Services.AddScoped<ICityRepository, CityRepository>();
